@@ -2,7 +2,20 @@
 	min-width: 350px;
 }
 
-.bg{
+/*.bg{
 	background-color: #333;
 	color: #fff;
+}*/
+
+.signup{
+border-radius: 10px;
+margin-top: 8rem !important;
+}
+
+.icon-style{
+	font-size: 5rem;
+}
+
+.login-btns{
+	width: 100%;
 }
