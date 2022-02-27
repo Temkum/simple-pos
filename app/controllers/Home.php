@@ -1,3 +1,4 @@
 <?php
 
-echo 'Home controller';
+
+require viewsPath('home');
