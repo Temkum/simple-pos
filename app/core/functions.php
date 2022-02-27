@@ -16,3 +16,8 @@ function viewsPath($view)
         echo "$view not found!";
     }
 }
+
+function esc($str)
+{
+    return htmlspecialchars($str);
+}

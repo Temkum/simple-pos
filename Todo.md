@@ -18,3 +18,5 @@
 > Info: avoid closing the php tags on the class file because it generates an error as it's going to read it as HTML. That occurs when u try to redirect a page because the headers have already been sent
 
 > The routing system is for scalability in case you intend to increase the amount of pages on the website
+
+## Design view pages
