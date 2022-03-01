@@ -1,3 +1,7 @@
+body{
+	font-family: 'Nunito', sans-serif;
+}
+
 .w-35{
 	min-width: 350px;
 }
@@ -29,7 +33,7 @@ margin-top: 8rem !important;
 }
 
 .js-products{
-	height: 90%;
+	height: 600px;
 	overflow-y: scroll;
 	flex-wrap: wrap;
 }
@@ -43,6 +47,11 @@ margin-top: 8rem !important;
 	justify-content: center;
 }
 
+.cart-table{
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
 .cart-img{
 	width: 100px;
 	height: 100px;
@@ -54,5 +63,15 @@ margin-top: 8rem !important;
 
 .numba-input span{
 	cursor: pointer;
+}
+
+center h4 .br-20{
+	border-radius: 20px;
+	font-size: 1rem;
+}
+
+.total{
+	font-size: 2rem;
+	float: right;
 }
 

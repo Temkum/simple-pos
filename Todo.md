@@ -52,3 +52,6 @@ qty
 amount
 total
 date
+
+- design cart ui
+- add checkout ui
