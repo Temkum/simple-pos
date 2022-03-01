@@ -32,7 +32,7 @@ amount
 image
 views
 user_id
-data
+date
 
 - users
 username
@@ -55,3 +55,8 @@ date
 
 - design cart ui
 - add checkout ui
+
+## Database 
+> SQLite is good on a single user app which can only be accessed by a single user
+- Used to store data locally
+- Adding indexes on columns help you to search the database
