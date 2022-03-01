@@ -22,7 +22,8 @@
 ## Design view pages
 - add home view
 
-> data for products table
+*Database tables*
+
 - Products 
 description
 barcode

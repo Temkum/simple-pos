@@ -3,8 +3,12 @@
 }
 
 .bg{
-	background-color: #eee;
+	/*background-color: #eee;*/
 	/*color: #fff;*/
+}
+
+.bg-gray{
+	background-color: #eee;
 }
 
 .signup{
@@ -33,3 +37,22 @@ margin-top: 8rem !important;
 .bold{
 	font-weight: bold;
 }
+
+.items{
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.cart-img{
+	width: 100px;
+	height: 100px;
+}
+
+.numba-input{
+	max-width: 150px;
+}
+
+.numba-input span{
+	cursor: pointer;
+}
+
