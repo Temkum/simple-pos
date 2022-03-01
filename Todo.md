@@ -20,3 +20,34 @@
 > The routing system is for scalability in case you intend to increase the amount of pages on the website
 
 ## Design view pages
+- add home view
+
+> data for products table
+- Products 
+description
+barcode
+qty
+amount
+image
+views
+user_id
+data
+
+- users
+username
+name
+email
+pwd
+role
+date
+image
+
+- sales
+user_id
+barcode
+receipt_no
+description
+qty
+amount
+total
+date

@@ -22,7 +22,7 @@
 
              <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Email</span>
-                <input type="email" class="form-control" placeholder="name@example.com" aria-label="Email">
+                <input type="email" class="form-control" placeholder="Enter email address" aria-label="Email">
              </div>
 
              <div class="input-group mb-3">
