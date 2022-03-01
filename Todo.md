@@ -60,3 +60,4 @@ date
 > SQLite is good on a single user app which can only be accessed by a single user
 - Used to store data locally
 - Adding indexes on columns help you to search the database
+- OOP
