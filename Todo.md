@@ -61,3 +61,6 @@ date
 - Used to store data locally
 - Adding indexes on columns help you to search the database
 - OOP
+
+- insert data into db
+- input validation

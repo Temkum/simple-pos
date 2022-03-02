@@ -11,30 +11,49 @@
 
       <form action="" method="POST" enctype="">
          <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Name</span>
-                <input type="text" class="form-control" placeholder="Enter name" aria-label="Username" name="name" autofocus>
-             </div>
-       
-             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Username</span>
-                <input type="text" class="form-control" placeholder="Enter username" aria-label="Username" name="username" required>
-             </div>
+             <span class="input-group-text" id="basic-addon1">Name</span>
+             <input type="text" class="form-control <?= !empty($errors['name']) ? 'border-danger' : '' ?>" placeholder="Enter name" aria-label="Username" name="name" autofocus value="<?= setValue('name') ?>">             
+          <?php if (!empty($errors['name'])) : ?>
+               <small class="text-danger col-12 p-1"><?= $errors['name'] ?></small>
+          <?php endif; ?>
+          </div>
+          
+    
+          <div class="input-group mb-3">
+             <span class="input-group-text" id="basic-addon1">Username</span>
+             <input type="text" class="form-control <?= !empty($errors['username']) ? 'border-danger' : '' ?>" placeholder="Enter username" aria-label="Username" name="username" value="<?= setValue('username') ?>">
+          <?php if (!empty($errors['username'])) : ?>
+               <small class="text-danger col-12 p-1"><?= $errors['username'] ?></small>
+          <?php endif; ?>
+          </div>
 
-             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Email</span>
-                <input type="email" class="form-control" placeholder="Enter email address" aria-label="Email" name="email" required>
-             </div>
+          <div class="input-group mb-3">
+             <span class="input-group-text" id="basic-addon1">Email</span>
+             <input type="email" class="form-control <?= !empty($errors['email']) ? 'border-danger' : '' ?>" placeholder="Enter email address" aria-label="Email" name="email" value="<?= setValue('email') ?>">
+          <?php if (!empty($errors['email'])) : ?>
+               <small class="text-danger col-12 p-1"><?= $errors['email'] ?></small>
+          <?php endif; ?>
+          </div>
 
-             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Password</span>
-                <input type="password" class="form-control" placeholder="Enter password" aria-label="Password" name="password" required>
-             </div><div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Retype Password</span>
-                <input type="password" class="form-control" placeholder="Repeat password" aria-label="Password" name="repeat_pwd" required>
-             </div>
-             <br>
-             <button class="btn btn-primary" type="submit">Signup</button>
-             <button class="btn btn-danger float-end">Cancel</button>
+          <div class="input-group mb-3">
+             <span class="input-group-text" id="basic-addon1">Password</span>
+             <input type="password" class="form-control <?= !empty($errors['password']) ? 'border-danger' : '' ?>" placeholder="Enter password" aria-label="Password" name="password" value="<?= setValue('password') ?>">
+          <?php if (!empty($errors['password'])) : ?>
+               <small class="text-danger col-12 p-1"><?= $errors['password'] ?></small>
+          <?php endif; ?>
+          </div>
+
+          <div class="input-group mb-3">
+             <span class="input-group-text" id="basic-addon1">Retype Password</span>
+             <input type="password" class="form-control <?= !empty($errors['repeat_pwd']) ? 'border-danger' : '' ?>" placeholder="Repeat password" aria-label="Password" name="repeat_pwd" value="<?= setValue('repeat_pwd') ?>">
+             <?php if (!empty($errors['repeat_pwd'])) : ?>
+               <small class="text-danger col-12 p-1"><?= $errors['repeat_pwd'] ?></small>
+             <?php endif; ?>
+          </div>
+
+          <br>
+          <button class="btn btn-primary" type="submit">Signup</button>
+          <button class="btn btn-danger float-end">Cancel</button>
       </form>
 
       <div class="row mt-3">

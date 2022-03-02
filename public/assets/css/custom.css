@@ -75,3 +75,8 @@ center h4 .br-20{
 	float: right;
 }
 
+.form-control:focus{
+	border-color: none;
+	box-shadow: none !important;
+}
+
