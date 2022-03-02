@@ -42,3 +42,57 @@ function connect()
 
     return $link;
 }
+
+function query($query, $data = [])
+{
+    $conn = connect();
+
+    // prepare a stmt
+    $stmt = $conn->prepare($query);
+    $check = $stmt->execute($data);
+
+    if ($check) {
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (is_array($result) && count($result) > 0) {
+            return $result;
+        }
+    }
+    return false;
+}
+
+function allowedColumns($data, $table)
+{
+    if ($table == 'users') {
+        $columns =[
+            'name',
+            'username',
+            'email',
+            'role',
+            'password',
+            'image',
+            'date',
+        ];
+
+        foreach ($data as $key => $value) {
+            // check if key is in columns arr
+            if (!in_array($key, $columns)) {
+                unset($data[$key]);
+            }
+        }
+        return $data;
+    }
+}
+
+function insert($data, $table)
+{
+    $clean_arr = allowedColumns($data, $table);
+
+    $keys = array_keys($clean_arr);
+
+    $sql= "INSERT INTO $table ";
+    $sql .= "(". implode(',', $keys) .") VALUES (:";
+    $sql .= implode(',:', $keys) .")";
+    
+    query($sql, $clean_arr);
+}
