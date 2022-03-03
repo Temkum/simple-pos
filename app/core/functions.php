@@ -22,6 +22,11 @@ function esc($str)
     return htmlspecialchars($str);
 }
 
+function redirect($page)
+{
+    header("Location: index.php?page_name=" . $page);
+}
+
 connect();
 function connect()
 {
@@ -124,7 +129,7 @@ function validate($data, $table)
             $errors['password'] = 'Password is required!';
         } elseif ($data['password'] !== $data['repeat_pwd']) {
             $errors['repeat_pwd'] = 'Passwords do not match!';
-        } elseif ($data['password'] < 6) {
+        } elseif (strlen($data['password']) < 6) {
             $errors['password'] = 'Password must be at least 6 characters!';
         }
     }
@@ -138,4 +143,9 @@ function setValue($key, $default = '')
         return $_POST[$key];
     }
     return $default;
+}
+
+function auth($row)
+{
+    $_SESSION['user'] = $row;
 }

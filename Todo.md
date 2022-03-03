@@ -64,3 +64,6 @@ date
 
 - insert data into db
 - input validation
+
+- Sessions: it is a way which websites recognize the user
+Always have the keyword `session_start()`
