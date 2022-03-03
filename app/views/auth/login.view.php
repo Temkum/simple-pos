@@ -5,7 +5,7 @@
     <div class="signup container-fluid col-lg-4 col-xg-6 col-md-6 col-sm-8 border mt-5 p-3 shadow"> 
        <center class="text-uppercase mb-5">
          <span><i class="bi bi-person-circle icon-style"></i></span>
-         <h3>User Login</h3>
+         <h3>Login</h3>
          <div><?= esc(APP_NAME) ?></div>
       </center>
 
