@@ -5,18 +5,18 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors = validate($_POST, 'users');
 
-    $data_arr['email'] = $_POST['email'];
+    $data_arr['username'] = $_POST['username'];
 
     if ($row = where($data_arr, 'users')) {
-        if ($row[0]['password'] === $_POST['password']) {
+        if (password_verify($_POST['pwd'], $row[0]['password'])) {
             authenticate($row);
 
-            redirect('home');
+             redirect('home');
         } else {
-            $errors['password'] = 'Password is wrong!';
+            $errors['pwd'] = 'Password is wrong!';
         }
     } else {
-        $errors['email'] = 'Email is wrong!';
+        $errors['username'] = 'Wrong username!';
     }
 }
 

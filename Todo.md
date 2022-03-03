@@ -67,3 +67,6 @@ date
 
 - Sessions: it is a way which websites recognize the user
 Always have the keyword `session_start()`
+
+- hash pwd: password hash uses a salt that's used to encrypt the pwd. It's a one way encryption algorithm
+- use password_verify to check login pwds

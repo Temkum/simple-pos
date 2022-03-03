@@ -11,23 +11,23 @@
 
       <form action="" method="POST">
          <div class="input-group mb-3">
-             <span class="input-group-text" id="basic-addon1">Email</span>
-             <input type="email" class="form-control <?= !empty($errors['email']) ? 'border-danger' : '' ?>" placeholder="Enter email" aria-label="Email" autofocus required name="email">
-             <?php if (!empty($errors['email'])) : ?>
-               <small class="text-danger col-12 p-1"><?= $errors['email'] ?></small>
+             <span class="input-group-text" id="basic-addon1">Username</span>
+             <input name="username" type="text" class="form-control <?= !empty($errors['username']) ? 'border-danger' : '' ?>" placeholder="Enter username" aria-label="Email"  value="<?= setValue('username') ?>" autofocus required>
+             <?php if (!empty($errors['username'])) : ?>
+               <small class="text-danger col-12 p-1"><?= $errors['username'] ?></small>
              <?php endif; ?>
          </div>
 
           <div class="input-group mb-3">
              <span class="input-group-text" id="basic-addon1">Password</span>
-             <input type="password" class="form-control <?= !empty($errors['password']) ? 'border-danger' : '' ?>" placeholder="Enter password" aria-label="Password" required name="password">
-             <?php if (!empty($errors['password'])) : ?>
-               <small class="text-danger col-12 p-1"><?= $errors['password'] ?></small>
+             <input name="pwd" type="password" class="form-control <?= !empty($errors['pwd']) ? 'border-danger' : '' ?>" placeholder="Enter password" aria-label="Password" required>
+             <?php if (!empty($errors['pwd'])) : ?>
+               <small class="text-danger col-12 p-1"><?= $errors['pwd'] ?></small>
              <?php endif; ?>
           </div>
           <br>
 
-          <div class="d-flex  justify-content-center">
+          <div class="d-flex justify-content-center">
               <button class="btn btn-primary btn-lg login-btns">Login</button>
           </div>         
       </form>

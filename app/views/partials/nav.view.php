@@ -18,7 +18,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="index.php?page_name=pos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Hi, User
+            Hi, <?= auth('username') ?>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="index.php?page_name=profile">Profile</a></li>

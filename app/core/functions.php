@@ -111,7 +111,6 @@ function where($data, $table)
     foreach ($keys as $key) {
         $sql .= "$key = :$key && ";
     }
-    
     $sql = trim($sql, "&& ");
 
     return query($sql, $data);
@@ -162,5 +161,13 @@ function setValue($key, $default = '')
 
 function authenticate($row)
 {
-    $_SESSION['user'] = $row;
+    $_SESSION['user'] = $row[0];
+}
+
+function auth($column)
+{
+    if (!empty($_SESSION['user'][$column])) {
+        return $_SESSION['user'][$column];
+    }
+    return 'Guest';
 }
