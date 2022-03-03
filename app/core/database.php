@@ -27,7 +27,7 @@ class Database
 
     public function query($query, $data = [])
     {
-        $conn = connect();
+        $conn = $this->connect();
 
       // prepare a stmt
         $stmt = $conn->prepare($query);

@@ -3,11 +3,11 @@
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $errors = validate($_POST, 'users');
-
+    $user = new UserModel();
+    
     $data_arr['username'] = $_POST['username'];
 
-    if ($row = where($data_arr, 'users')) {
+    if ($row = $user->where($data_arr, 'users')) {
         if (password_verify($_POST['pwd'], $row[0]['password'])) {
             authenticate($row);
 

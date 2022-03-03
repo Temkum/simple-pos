@@ -5,10 +5,23 @@
  */
 class Model extends Database
 {
-
-    public function insert($data,)
+    protected function getAllowedColumns($data)
     {
-        $clean_arr = allowedColumns($data, $this->table);
+        if (!empty($this->allowed_columns)) {
+            foreach ($data as $key => $value) {
+                // check if key is in columns arr
+                if (!in_array($key, $columns)) {
+                    unset($data[$key]);
+                }
+            }
+        }
+        
+        return $data;
+    }
+
+    public function insert($data)
+    {
+        $clean_arr = getAllowedColumns($data, $this->table);
 
         $keys = array_keys($clean_arr);
 

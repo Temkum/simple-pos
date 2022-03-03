@@ -3,12 +3,49 @@
 /**
  *  User model
  */
-class User extends Model
+class UserModel extends Model
 {
     protected $table = 'users';
-    
-    function __construct(argument)
+    protected $allowed_columns = [
+            'name',
+            'username',
+            'email',
+            'role',
+            'password',
+            'image',
+            'date',
+            ];
+
+    public function validate($data)
     {
-        // code...
+        $errors = [];
+
+        if (empty($data['name'])) {
+            $errors['name'] = 'Name field cannot be empty!';
+        } elseif (!preg_match('/[a-zA-Z ]/', $data['name'])) {
+            $errors['name'] = 'Only letters are allowed in name field!';
+        }
+
+        if (empty($data['username'])) {
+            $errors['username'] = 'Username is required!';
+        } elseif (!preg_match('/[a-zA-Z0-9_]/', $data['username'])) {
+            $errors['username'] = 'Spaces are not allowed in username!';
+        }
+
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Email is not valid!';
+        } elseif (empty($data['email'])) {
+            $errors['email'] = 'Email is required!';
+        }
+
+        if (empty($data['password'])) {
+            $errors['password'] = 'Password is required!';
+        } elseif ($data['password'] !== $data['repeat_pwd']) {
+            $errors['repeat_pwd'] = 'Passwords do not match!';
+        } elseif (strlen($data['password']) < 6) {
+            $errors['password'] = 'Password must be at least 6 characters!';
+        }
+
+        return $errors;
     }
 }
