@@ -58,7 +58,7 @@
 
       <div class="row mt-3">
       <span>
-            Already have an account? Login <a href="index.php?page_name=login"> here</a>
+            Already have an account? <a href="index.php?page_name=login">Login here</a>
          </span>         
       </div>
    </div>

@@ -102,6 +102,21 @@ function insert($data, $table)
     query($sql, $clean_arr);
 }
 
+function where($data, $table)
+{
+    $keys = array_keys($data);
+
+    $sql= "SELECT * FROM $table WHERE ";
+
+    foreach ($keys as $key) {
+        $sql .= "$key = :$key && ";
+    }
+    
+    $sql = trim($sql, "&& ");
+
+    return query($sql, $data);
+}
+
 function validate($data, $table)
 {
     $errors = [];
@@ -145,7 +160,7 @@ function setValue($key, $default = '')
     return $default;
 }
 
-function auth($row)
+function authenticate($row)
 {
     $_SESSION['user'] = $row;
 }
