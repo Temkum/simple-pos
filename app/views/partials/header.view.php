@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<body class="bg">
+<body class="bg bg-gray">
   <?php
      $no_nav[] = 'login';
      $no_nav[] = 'signup';

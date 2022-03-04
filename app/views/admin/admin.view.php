@@ -2,8 +2,8 @@
 require viewsPath('partials/header');
 ?>
 
-<div class="row container-fluid">
-  <h1 class="text-center">Admin dashboard</h1>
+<div class="row container-fluid ">
+  <h3 class="text-center my-4 text-uppercase">Admin dashboard</h3>
   <div class="me-3 col-xs-12 col-sm-4 col-md-3 col-lg-2 m-sm-2">
     <ul class="list-group">
       <a href="index.php?page_name=admin&tab=dashboard">
@@ -24,7 +24,7 @@ require viewsPath('partials/header');
         </li>
       </a>
 
-      <a href="index.php?page_name=logout">
+      <a href="index.php?page_name=logout" class="mt-5">
         <li class="list-group-item ">
           <i class="bi bi-box-arrow-left"></i> Logout
         </li>
@@ -32,8 +32,19 @@ require viewsPath('partials/header');
     </ul>
   </div>
 
-  <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 border p-2">
+  <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 border p-2 shadow-sm radius-4">
     <h4><?= strtoupper($tab)?></h4>
+
+    <?php 
+    switch ($tab) {
+      case 'products':
+        require viewsPath('admin/products');
+        break;
+      default:
+        # code...
+        break;
+    }
+    ?>
   </div>
 
 </div>

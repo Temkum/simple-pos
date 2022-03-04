@@ -37,7 +37,9 @@
 
      <div class="btns">
        <button class="btn btn-primary">Save</button>
-       <button type="button" class="btn btn-warning float-end">Cancel</button>
+       <a href="index.php?page_name=admin&tab=products">
+         <button type="button" class="btn btn-warning float-end">Cancel</button>
+       </a>
      </div>
    </form>
 

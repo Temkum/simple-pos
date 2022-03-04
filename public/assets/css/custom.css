@@ -83,3 +83,7 @@ center h4 .br-20 {
 	border-color: none;
 	box-shadow: none !important;
 }
+
+.radius-4 {
+	border-radius: 4px;
+}
