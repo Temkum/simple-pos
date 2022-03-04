@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc(APP_NAME) ?></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?= esc(APP_NAME) ?></title>
 
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.css">
 
-    <!-- custom css -->
-    <link rel="stylesheet" href="assets/css/custom.css">
+  <!-- custom css -->
+  <link rel="stylesheet" href="assets/css/custom.css">
 </head>
+
 <body class="bg">
-     <?php
+  <?php
      $no_nav[] = 'login';
      $no_nav[] = 'signup';
      
@@ -21,6 +23,6 @@
          require viewsPath('partials/nav');
      }
         ?>
-        
-<!-- main container -->
-    <div class="container-fluid w-35">
+
+  <!-- main container -->
+  <div class="container-fluid w-35">

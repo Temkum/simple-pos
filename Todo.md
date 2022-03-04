@@ -20,44 +20,47 @@
 > The routing system is for scalability in case you intend to increase the amount of pages on the website
 
 ## Design view pages
+
 - add home view
 
-*Database tables*
+_Database tables_
 
-- Products 
-description
-barcode
-qty
-amount
-image
-views
-user_id
-date
+- Products
+  description
+  barcode
+  qty
+  amount
+  image
+  views
+  user_id
+  date
 
 - users
-username
-name
-email
-pwd
-role
-date
-image
+  username
+  name
+  email
+  pwd
+  role
+  date
+  image
 
 - sales
-user_id
-barcode
-receipt_no
-description
-qty
-amount
-total
-date
+  user_id
+  barcode
+  receipt_no
+  description
+  qty
+  amount
+  total
+  date
 
 - design cart ui
 - add checkout ui
 
-## Database 
+## Database
+
 > SQLite is good on a single user app which can only be accessed by a single user
+
 - Used to store data locally
 - Adding indexes on columns help you to search the database
 - OOP
@@ -66,10 +69,13 @@ date
 - input validation
 
 - Sessions: it is a way which websites recognize the user
-Always have the keyword `session_start()`
+  Always have the keyword `session_start()`
 
 - hash pwd: password hash uses a salt that's used to encrypt the pwd. It's a one way encryption algorithm
 - use password_verify to check login pwds
 
 ## Convert to OOP
 
+- fixed logout feature
+- add admin ui
+- add admin products page

@@ -1,86 +1,85 @@
-body{
+body {
 	font-family: 'Nunito', sans-serif;
 }
 
-.w-35{
+.w-35 {
 	min-width: 350px;
 }
 
-.bg{
+.bg {
 	/*background-color: #eee;*/
 	/*color: #fff;*/
 }
 
-a{
+a {
 	text-decoration: none;
 }
 
-.bg-gray{
+.bg-gray {
 	background-color: #eee;
 }
 
-.signup{
-border-radius: 10px;
-margin-top: 8rem !important;
+.signup {
+	border-radius: 10px;
+	margin-top: 8rem !important;
 }
 
-.icon-style{
+.icon-style {
 	font-size: 5rem;
 }
 
-.login-btns{
+.login-btns {
 	width: 100%;
 }
 
-.search{
+.search {
 	height: 600px;
 }
 
-.js-products{
+.js-products {
 	height: 600px;
 	overflow-y: scroll;
 	flex-wrap: wrap;
 }
 
-.bold{
+.bold {
 	font-weight: bold;
 }
 
-.items{
+.items {
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
-.cart-table{
+.cart-table {
 	max-height: 400px;
 	overflow-y: scroll;
 }
 
-.cart-img{
+.cart-img {
 	width: 100px;
 	height: 100px;
 }
 
-.numba-input{
+.numba-input {
 	max-width: 150px;
 }
 
-.numba-input span{
+.numba-input span {
 	cursor: pointer;
 }
 
-center h4 .br-20{
+center h4 .br-20 {
 	border-radius: 20px;
 	font-size: 1rem;
 }
 
-.total{
+.total {
 	font-size: 2rem;
 	float: right;
 }
 
-.form-control:focus{
+.form-control:focus {
 	border-color: none;
 	box-shadow: none !important;
 }
-
