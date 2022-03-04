@@ -32,10 +32,10 @@ class UserModel extends Model
             $errors['username'] = 'Spaces are not allowed in username!';
         }
 
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'Email is not valid!';
-        } elseif (empty($data['email'])) {
+        if (empty($data['email'])) {
             $errors['email'] = 'Email is required!';
+        } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = 'Email is not valid!';
         }
 
         if (empty($data['password'])) {

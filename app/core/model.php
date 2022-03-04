@@ -10,7 +10,7 @@ class Model extends Database
         if (!empty($this->allowed_columns)) {
             foreach ($data as $key => $value) {
                 // check if key is in columns arr
-                if (!in_array($key, $columns)) {
+                if (!in_array($key, $this->allowed_columns)) {
                     unset($data[$key]);
                 }
             }
@@ -21,7 +21,7 @@ class Model extends Database
 
     public function insert($data)
     {
-        $clean_arr = getAllowedColumns($data, $this->table);
+        $clean_arr = $this->getAllowedColumns($data, $this->table);
 
         $keys = array_keys($clean_arr);
 

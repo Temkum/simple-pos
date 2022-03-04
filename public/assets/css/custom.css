@@ -11,6 +11,10 @@ body{
 	/*color: #fff;*/
 }
 
+a{
+	text-decoration: none;
+}
+
 .bg-gray{
 	background-color: #eee;
 }
