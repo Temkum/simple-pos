@@ -91,3 +91,8 @@ center h4 .br-20 {
 .m-top {
 	margin-top: 5rem;
 }
+
+.bi-exclamation-triangle {
+	font-size: 2rem;
+	color: red;
+}

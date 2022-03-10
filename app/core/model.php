@@ -48,4 +48,24 @@ class Model extends Database
 
         return $DB->query($sql, $data);
     }
+    
+    public function getSingle($data)
+    {
+        $keys = array_keys($data);
+
+        $sql= "SELECT * FROM $this->table WHERE ";
+
+        foreach ($keys as $key) {
+            $sql .= "$key = :$key && ";
+        }
+        $sql = trim($sql, "&& ");
+
+        $DB = new Database();
+
+        if($result = $DB->query($sql, $data)){
+            return $result[0];
+        }
+
+        return false;
+    }
 }

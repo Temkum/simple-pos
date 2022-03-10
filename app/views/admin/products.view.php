@@ -31,8 +31,12 @@
         <td><?= esc($product['date'])?></td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-success btn-sm">Edit</button>
-            <button class="btn btn-danger btn-sm">Delete</button>
+            <a href="index.php?page_name=editproduct&id=<?= $product['id'] ?>">
+              <button class="btn btn-success btn-sm">Edit</button>
+            </a>
+            <a href="index.php?page_name=deleteproduct&id=<?= $product['id'] ?>">
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </a>
           </div>
         </td>
       </tr>
