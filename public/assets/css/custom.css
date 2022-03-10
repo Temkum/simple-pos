@@ -1,15 +1,15 @@
 body {
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 .w-35 {
 	min-width: 350px;
 }
 
-.bg {
-	/*background-color: #eee;*/
-	/*color: #fff;*/
-}
+/* .bg {
+	background-color: #eee;
+	color: #fff;
+} */
 
 a {
 	text-decoration: none;
@@ -80,10 +80,14 @@ center h4 .br-20 {
 }
 
 .form-control:focus {
-	border-color: none;
+	border-color: rgba(1, 17, 163, 0.678);
 	box-shadow: none !important;
 }
 
 .radius-4 {
 	border-radius: 4px;
+}
+
+.m-top {
+	margin-top: 5rem;
 }

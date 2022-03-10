@@ -79,3 +79,8 @@ _Database tables_
 - fixed logout feature
 - add admin ui
 - add admin products page
+
+- add products validation
+- image upload for validation
+
+  > ended #32 5.04min
