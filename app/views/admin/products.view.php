@@ -19,12 +19,16 @@
       <?php if(!empty($products)):?>
       <?php foreach ($products as $product) : ?>
       <tr>
-        <td><?= esc($product->barcode)?></td>
-        <td><?= esc($product->description)?></td>
-        <td><?= esc($product->qty)?></td>
-        <td><?= esc($product->amount)?></td>
-        <td>Image</td>
-        <td><?= esc($product->date)?></td>
+        <td><?= esc($product['barcode'])?></td>
+        <td>
+          <a href="index.php?page_name=product_details&id=<?= $product['id'] ?>">
+            <?= esc($product['description'])?>
+          </a>
+        </td>
+        <td><?= esc($product['qty'])?></td>
+        <td><?= esc($product['amount'])?></td>
+        <td><img src="<?= $product['image'] ?>" alt="" width="100"></td>
+        <td><?= esc($product['date'])?></td>
         <td>
           <div class="btn-group">
             <button class="btn btn-success btn-sm">Edit</button>
