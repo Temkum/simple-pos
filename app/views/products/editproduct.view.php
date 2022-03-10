@@ -3,7 +3,7 @@
     ?>
 
  <?php if (!empty($row)):?>
- <div class="add-product container-fluid border p-4 col-lg-4 mx-auto m-top">
+ <div class="add-product container-fluid border p-4 col-lg-4 mx-auto m-top shadow">
    <h3 class="text-center">Edit product</h3>
 
    <form action="" method="POST" enctype="multipart/form-data">

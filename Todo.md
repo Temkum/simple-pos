@@ -83,4 +83,7 @@ _Database tables_
 - add products validation
 - image upload for validation
 
+- edit product
+- load info from db
+- validate
   > ended #32 5.04min

@@ -17,7 +17,8 @@ class ProductModel extends Model
             'date',
             ];
 
-    public function validate($data)
+            // add $id for editing products
+    public function validate($data, $id = null)
     {
         $errors = [];
 
@@ -43,14 +44,18 @@ class ProductModel extends Model
         $max_size = 4;
         $img_size = $max_size * (1024 * 1024);
         
-        if (empty($data['image'])) {
-            $errors['image'] = 'Product image is required!';
-        } elseif (!($data['image']['type'] == 'image/jpeg' || $data['image']['type'] == 'image/jpg' || $data['image']['type'] == 'image/png')) {
-            $errors['image'] = 'Image must be a valid JPEG or PNG!';
-        }elseif ($data['image']['error'] > 0 ) {
-            $errors['image'] = 'Image upload failed. Error -'.  $data['image']['error'];
-        }elseif ($data['image']['size'] > $img_size ) {
-            $errors['image'] = 'Image size must be lower than' . $max_size.'MB';
+        // check if prod is present
+        if (!$id || ($id && !empty($data['image']))) {
+            # code...
+            if (empty($data['image'])) {
+                $errors['image'] = 'Product image is required!';
+            } elseif (!($data['image']['type'] == 'image/jpeg' || $data['image']['type'] == 'image/jpg' || $data['image']['type'] == 'image/png')) {
+                $errors['image'] = 'Image must be a valid JPEG or PNG!';
+            }elseif ($data['image']['error'] > 0 ) {
+                $errors['image'] = 'Image upload failed. Error -'.  $data['image']['error'];
+            }elseif ($data['image']['size'] > $img_size ) {
+                $errors['image'] = 'Image size must be lower than' . $max_size.'MB';
+            }
         }
 
         return $errors;
