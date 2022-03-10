@@ -86,4 +86,7 @@ _Database tables_
 - edit product
 - load info from db
 - validate
+- add update function
+
+- delete product
   > ended #32 5.04min

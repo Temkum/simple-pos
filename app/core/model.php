@@ -93,4 +93,15 @@ class Model extends Database
         $DB = new Database();
         $DB->query($query, $clean_arr);
     }
+
+    public function delete($id)
+    {
+       $query = "DELETE FROM $this->table WHERE id = :id LIMIT 1";
+
+        // add id to clean arr
+        $clean_arr['id'] = $id;
+    
+        $DB = new Database();
+        $DB->query($query, $clean_arr);
+    }
 }
