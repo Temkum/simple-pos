@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_POST['barcode'] = empty($_POST['barcode']) ? $product->generateBarcode() : $_POST['barcode'];
     $_POST['date'] = date('Y-m-d H:i:s');
 
-    if (!empty($_FILES)) {
+    if (!empty($_FILES['image']['name'])) {
       $_POST['image'] = $_FILES['image'];
     }
 

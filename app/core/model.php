@@ -68,4 +68,29 @@ class Model extends Database
 
         return false;
     }
+
+    public function update($id, $data)
+    {
+       $clean_arr = $this->getAllowedColumns($data, $this->table);
+
+        $keys = array_keys($clean_arr);
+
+        $query = "UPDATE $this->table SET ";
+
+        // loop to get column names
+        foreach ($keys as $column) {
+            $query .= $column . '=:' . $column . ',';
+        }
+        // get rid of commas at the end
+        $query = trim($query, ',');
+
+        // add where clause
+        $query .= " WHERE id = :id";
+
+        // add id to clean arr
+        $clean_arr['id'] = $id;
+    
+        $DB = new Database();
+        $DB->query($query, $clean_arr);
+    }
 }
