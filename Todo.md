@@ -89,4 +89,6 @@ _Database tables_
 - add update function
 
 - delete product
+
+- crop image function
   > ended #32 5.04min

@@ -16,19 +16,19 @@
       </tr>
     </thead>
     <tbody>
-      <?php if(!empty($products)):?>
+      <?php if (!empty($products)) : ?>
       <?php foreach ($products as $product) : ?>
       <tr>
-        <td><?= esc($product['barcode'])?></td>
+        <td><?= esc($product['barcode']) ?></td>
         <td>
           <a href="index.php?page_name=product_details&id=<?= $product['id'] ?>">
-            <?= esc($product['description'])?>
+            <?= esc($product['description']) ?>
           </a>
         </td>
-        <td><?= esc($product['qty'])?></td>
-        <td><?= esc($product['amount'])?></td>
-        <td><img src="<?= $product['image'] ?>" alt="" width="100"></td>
-        <td><?= date("jS M, Y", strtotime($product['date']))?></td>
+        <td><?= esc($product['qty']) ?></td>
+        <td><?= esc($product['amount']) ?></td>
+        <td><img src="<?= cropImg($product['image'], 200) ?>" alt="" width="100"></td>
+        <td><?= date("jS M, Y", strtotime($product['date'])) ?></td>
         <td>
           <div class="btn-group">
             <a href="index.php?page_name=editproduct&id=<?= $product['id'] ?>">
@@ -40,9 +40,9 @@
           </div>
         </td>
       </tr>
-      <?php endforeach;?>
+      <?php endforeach; ?>
 
-      <?php endif;?>
+      <?php endif; ?>
     </tbody>
   </table>
 
