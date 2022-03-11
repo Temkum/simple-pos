@@ -34,12 +34,12 @@ a {
 	width: 100%;
 }
 
-.search {
+/* .search {
 	height: 600px;
-}
+} */
 
 .js-products {
-	height: 600px;
+	max-height: 600px;
 	overflow-y: scroll;
 	flex-wrap: wrap;
 }

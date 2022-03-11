@@ -7,7 +7,8 @@
      <div class="bg-gray shadow-sm col-md-8 col-lg-6 me-3">
        <div class="input-group mb-3 w-75 p-2">
          <h4 class="me-4">Items</h4>
-         <input type="text" class="form-control" placeholder="Search" aria-label="">
+         <input type="text" class="form-control js-search" placeholder="Search" aria-label=""
+           oninput="searchItem(event)">
          <span class="input-group-text">
            <i class="bi bi-search"></i>
          </span>
@@ -108,6 +109,17 @@
  </div>
 
  <script>
+// search feature
+function searchItem(e) {
+  const text = e.target.value.trim();
+
+  const data = {};
+  data.dataType = 'search';
+  data.text = text;
+
+  sendData(data);
+}
+
 function sendData(data) {
   let ajax = new XMLHttpRequest();
 
@@ -125,9 +137,11 @@ function sendData(data) {
     }
 
   });
+
   //true so it runs in the background
   ajax.open('post', 'index.php?page_name=ajax', true);
-  ajax.send();
+  // convert obj to string & send
+  ajax.send(JSON.stringify(data));
 }
 
 function handleResult(result) {
@@ -146,7 +160,7 @@ function handleResult(result) {
 }
 
 function productMarkup(data) {
-  return `<div class="card m-3" style="width: 12rem;">
+  return `<div class="card mx-auto mb-2" style="width: 12rem;">
            <a href="#" class=""><img src="${data.image}" class="card-img-top" alt="...">
            </a>
            <div class="card-body">
@@ -155,7 +169,10 @@ function productMarkup(data) {
            </div>
          </div>`;
 }
-sendData();
+sendData({
+  dataType: "search",
+  text: ""
+});
  </script>
 
  <?php require viewsPath('partials/footer'); ?>

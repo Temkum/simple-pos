@@ -93,4 +93,7 @@ _Database tables_
 - crop image function
 
 - use ajax to load products
+- sort products - display latest and most viewed ones first
+- add search feature using ajax
+
   > ended #32 5.04min

@@ -33,7 +33,7 @@ class Model extends Database
         $DB->query($sql, $clean_arr);
     }
 
-    public function where($data, $limit = 10, $offset = 0)
+    public function where($data, $limit = 10, $offset = 0, $order = "DESC", $order_column = "id")
     {
         $keys = array_keys($data);
 
@@ -43,16 +43,16 @@ class Model extends Database
             $sql .= "$key = :$key && ";
         }
         $sql = trim($sql, "&& ");
-        $sql .= " LIMIT $limit OFFSET $offset";
+        $sql .= " ORDER BY $order_column $order LIMIT $limit OFFSET $offset";
 
         $DB = new Database();
 
         return $DB->query($sql, $data);
     }
 
-    public function getAll($limit = 10, $offset = 0)
+    public function getAll($limit = 10, $offset = 0, $order = "DESC", $order_column = "id")
     {
-        $sql = "SELECT * FROM $this->table LIMIT $limit OFFSET $offset";
+        $sql = "SELECT * FROM $this->table ORDER BY $order_column $order LIMIT $limit OFFSET $offset";
 
         $DB = new Database();
 
