@@ -91,4 +91,6 @@ _Database tables_
 - delete product
 
 - crop image function
+
+- use ajax to load products
   > ended #32 5.04min

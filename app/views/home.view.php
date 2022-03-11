@@ -1,6 +1,6 @@
  <?php
- require viewsPath('partials/header');
-    ?>
+  require viewsPath('partials/header');
+  ?>
  <div class="container-fluid shadow-sm">
 
    <div class="d-flex">
@@ -155,5 +155,5 @@
 
  </div>
 
-
- <?php require viewsPath('partials/footer'); ?>
+ <script>
+<?php require viewsPath('partials/footer'); ?>

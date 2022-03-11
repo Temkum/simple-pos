@@ -50,11 +50,14 @@ function auth($column)
 
 function cropImg($filename, $size = 600)
 {
-
     $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-    // $cropped_file = str_replace('.' . $ext, "_cropped." .$ext, $filename);
 
     $cropped_file = preg_replace("/\.$ext$/", "_cropped." . $ext, $filename);
+
+    // prevent file from cropping twice
+    if (file_exists($cropped_file)) {
+        return $cropped_file;
+    }
 
     // create img resource using file extension
     switch ($ext) {
