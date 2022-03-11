@@ -14,55 +14,7 @@
        </div>
 
        <div class="js-products d-flex">
-         <div class="card m-3" style="width: 12rem;">
-           <a href="#" class=""><img src="assets/images/caramel-moolatte.png" class="card-img-top" alt="...">
-           </a>
 
-           <div class="card-body">
-             <p class="card-title text-muted">Caramel Molatte</p>
-             <p class="card-text bold"><b>$5</b></p>
-           </div>
-         </div>
-
-         <div class="card m-3" style="width: 12rem;">
-           <a href="#">
-             <img src="assets/images/drinks_cola_zero.jpg" class="card-img-top" alt="...">
-           </a>
-           <div class="card-body">
-             <p class="card-title text-muted">Coka cola</p>
-             <p class="card-text bold"><b>$5</b></p>
-           </div>
-         </div>
-
-         <div class="card m-3" style="width: 12rem;">
-           <a href="">
-             <img src="assets/images/image.jpg" class="card-img-top" alt="...">
-           </a>
-           <div class="card-body">
-             <p class="card-title text-muted">Smoothie</p>
-             <p class="card-text bold"><b>$5</b></p>
-           </div>
-         </div>
-
-         <div class="card m-3" style="width: 12rem;">
-           <a href="">
-             <img src="assets/images/images5.jpg" class="card-img-top" alt="...">
-           </a>
-           <div class="card-body">
-             <p class="card-title text-muted">Monster drink</p>
-             <p class="card-text bold"><b>$5</b></p>
-           </div>
-         </div>
-
-         <div class="card m-3" style="width: 12rem;">
-           <a href="">
-             <img src="assets/images/fast-food.jpg" class="card-img-top" alt="...">
-           </a>
-           <div class="card-body">
-             <p class="card-title text-muted">Burger</p>
-             <p class="card-text bold"><b>$5</b></p>
-           </div>
-         </div>
        </div>
      </div>
 
@@ -156,4 +108,54 @@
  </div>
 
  <script>
-<?php require viewsPath('partials/footer'); ?>
+function sendData(data) {
+  let ajax = new XMLHttpRequest();
+
+  // get a response
+  ajax.addEventListener('readystatechange', function(e) {
+
+    if (ajax.readyState == 4) {
+
+      if (ajax.status == 200) {
+        handleResult(ajax.responseText);
+      } else {
+        console.log('An error occurred with Err Code: ' + ajax.status + " Err msg:" + ajax.statusText);
+        console.log(ajax);
+      }
+    }
+
+  });
+  //true so it runs in the background
+  ajax.open('post', 'index.php?page_name=ajax', true);
+  ajax.send();
+}
+
+function handleResult(result) {
+  let obj = JSON.parse(result);
+
+  if (typeof obj != 'undefined') {
+    // get valid json
+    let myDiv = document.querySelector('.js-products');
+    myDiv.innerHTML = "";
+
+    // loop through db data
+    for (let i = 0; i < obj.length; i++) {
+      myDiv.innerHTML += productMarkup(obj[i]);
+    }
+  }
+}
+
+function productMarkup(data) {
+  return `<div class="card m-3" style="width: 12rem;">
+           <a href="#" class=""><img src="${data.image}" class="card-img-top" alt="...">
+           </a>
+           <div class="card-body">
+             <p class="card-title text-muted">${data.description}</p>
+             <p class="card-text bold"><b>$${data.amount}</b></p>
+           </div>
+         </div>`;
+}
+sendData();
+ </script>
+
+ <?php require viewsPath('partials/footer'); ?>

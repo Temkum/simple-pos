@@ -25,6 +25,7 @@ function esc($str)
 function redirect($page)
 {
     header("Location: index.php?page_name=" . $page);
+    exit;
 }
 
 function setValue($key, $default = '')
@@ -96,7 +97,6 @@ function cropImg($filename, $size = 600)
         $src_width = $original_height;
         $src_height = $original_height;
     }
-
 
     // set cropping params
     $dst_image = imagecreatetruecolor((int)$size, (int)$size);

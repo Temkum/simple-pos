@@ -15,7 +15,7 @@ class Model extends Database
                 }
             }
         }
-        
+
         return $data;
     }
 
@@ -25,35 +25,45 @@ class Model extends Database
 
         $keys = array_keys($clean_arr);
 
-        $sql= "INSERT INTO $this->table ";
-        $sql .= "(". implode(',', $keys) .") VALUES (:";
-        $sql .= implode(',:', $keys) .")";
-    
+        $sql = "INSERT INTO $this->table ";
+        $sql .= "(" . implode(',', $keys) . ") VALUES (:";
+        $sql .= implode(',:', $keys) . ")";
+
         $DB = new Database();
         $DB->query($sql, $clean_arr);
     }
 
-    public function where($data)
+    public function where($data, $limit = 10, $offset = 0)
     {
         $keys = array_keys($data);
 
-        $sql= "SELECT * FROM $this->table WHERE ";
+        $sql = "SELECT * FROM $this->table WHERE ";
 
         foreach ($keys as $key) {
             $sql .= "$key = :$key && ";
         }
         $sql = trim($sql, "&& ");
+        $sql .= " LIMIT $limit OFFSET $offset";
 
         $DB = new Database();
 
         return $DB->query($sql, $data);
     }
-    
+
+    public function getAll($limit = 10, $offset = 0)
+    {
+        $sql = "SELECT * FROM $this->table LIMIT $limit OFFSET $offset";
+
+        $DB = new Database();
+
+        return $DB->query($sql);
+    }
+
     public function getSingle($data)
     {
         $keys = array_keys($data);
 
-        $sql= "SELECT * FROM $this->table WHERE ";
+        $sql = "SELECT * FROM $this->table WHERE ";
 
         foreach ($keys as $key) {
             $sql .= "$key = :$key && ";
@@ -62,7 +72,7 @@ class Model extends Database
 
         $DB = new Database();
 
-        if($result = $DB->query($sql, $data)){
+        if ($result = $DB->query($sql, $data)) {
             return $result[0];
         }
 
@@ -71,7 +81,7 @@ class Model extends Database
 
     public function update($id, $data)
     {
-       $clean_arr = $this->getAllowedColumns($data, $this->table);
+        $clean_arr = $this->getAllowedColumns($data, $this->table);
 
         $keys = array_keys($clean_arr);
 
@@ -89,18 +99,18 @@ class Model extends Database
 
         // add id to clean arr
         $clean_arr['id'] = $id;
-    
+
         $DB = new Database();
         $DB->query($query, $clean_arr);
     }
 
     public function delete($id)
     {
-       $query = "DELETE FROM $this->table WHERE id = :id LIMIT 1";
+        $query = "DELETE FROM $this->table WHERE id = :id LIMIT 1";
 
         // add id to clean arr
         $clean_arr['id'] = $id;
-    
+
         $DB = new Database();
         $DB->query($query, $clean_arr);
     }
