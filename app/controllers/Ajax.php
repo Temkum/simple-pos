@@ -32,7 +32,11 @@ if (!empty($raw_data)) {
           $rows[$key]['image'] = cropImg($row['image']);
         }
 
-        echo json_encode($rows);
+        // if data doesn't exist
+        $info['dataType'] = 'search';
+        $info['data'] = $rows;
+
+        echo json_encode($info);
       }
     }
   }

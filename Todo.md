@@ -96,4 +96,6 @@ _Database tables_
 - sort products - display latest and most viewed ones first
 - add search feature using ajax
 
+- Add items to sale container
+
   > ended #32 5.04min
