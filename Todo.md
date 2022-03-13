@@ -98,5 +98,6 @@ _Database tables_
 
 - Add items to sale container
 - add to cart
+- change quantity in cart
 
   > ended #32 5.04min

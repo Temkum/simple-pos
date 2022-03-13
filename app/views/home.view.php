@@ -46,7 +46,7 @@
        <!-- checkout -->
        <div class="checkout p-4">
          <button class="btn btn-success w-100 py-3 my-3">Checkout</button>
-         <button class="btn btn-warning w-100">Clear items</button>
+         <button class="btn btn-warning w-100 clear-items" onclick="clearCart()">Clear items</button>
        </div>
      </div>
    </div>

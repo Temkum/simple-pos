@@ -131,6 +131,15 @@ function refreshItems() {
   grandtotal_Div.innerHTML = "Total: $" + grand_total;
 }
 
+function clearCart() {
+  if (!confirm("Are you sure you want to clear cart items!")) {
+    return;
+  } else {
+    ITEMS = [];
+    refreshItems();
+  }
+}
+
 sendData({
   dataType: "search",
   text: "",
