@@ -75,18 +75,18 @@ function productMarkup(data, index) {
 
 function itemMarkup(data) {
   return `<tr>
-            <td><img src="assets/images/fast-food.jpg" class="cart-img" alt="...">
+            <td><img src="${data.image}" class="cart-img" alt="...">
             </td>
-            <td class="text-muted">Burger King
+            <td class="text-muted">${data.description}
               <div class="input-group my-3 numba-input">
                 <span class="input-group-text"><i class="bi bi-dash-lg"></i></span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="1">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${data.qty}">
                 <span class="input-group-text">
                   <i class="bi bi-plus-lg"></i>
                 </span>
               </div>
             </td>
-            <td><b>$5</b></td>
+            <td><b>$${data.amount}</b></td>
           </tr>`;
 }
 
@@ -94,10 +94,41 @@ function addItem(e) {
   if (e.target.tagName == "IMG") {
     let index = e.target.getAttribute("index");
 
-    ITEMS.push(PRODUCTS[index]);
+    // check if item exists in cart
+    for (let i = ITEMS.length - 1; i >= 0; i--) {
+      // add qty and refresh table
+      if (ITEMS[i].id == PRODUCTS[index].id) {
+        ITEMS[i].qty += 1;
+        refreshItems();
+        return;
+      }
+    }
 
-    console.log(ITEMS);
+    let tempData = PRODUCTS[index];
+    tempData.qty = 1;
+
+    ITEMS.push(PRODUCTS[index]);
+    refreshItems();
   }
+}
+
+function refreshItems() {
+  let itemCount = document.querySelector(".js-item-count");
+  itemCount.innerHTML = ITEMS.length;
+
+  let itemsDiv = document.querySelector(".js-items");
+  itemsDiv.innerHTML = "";
+
+  // get total
+  let grand_total = 0;
+
+  for (let i = ITEMS.length - 1; i >= 0; i--) {
+    itemsDiv.innerHTML += itemMarkup(ITEMS[i]);
+    grand_total += ITEMS[i].qty * ITEMS[i].amount;
+  }
+
+  let grandtotal_Div = document.querySelector(".js-total");
+  grandtotal_Div.innerHTML = "Total: $" + grand_total;
 }
 
 sendData({

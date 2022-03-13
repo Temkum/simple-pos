@@ -21,7 +21,7 @@
 
      <div class="bg-light col-md-8 col-lg-5 cart">
        <center>
-         <h4>Cart <span class="badge bg-primary br-20">0</span></h4>
+         <h4>Cart <span class="badge bg-primary br-20 js-item-count">0</span></h4>
        </center>
 
        <div class="table-responsive cart-table">
@@ -34,26 +34,13 @@
              </tr>
            </thead>
            <tbody class="js-items">
-             <!-- <tr>
-               <td><img src="assets/images/fast-food.jpg" class="cart-img" alt="...">
-               </td>
-               <td class="text-muted">Burger King
-                 <div class="input-group my-3 numba-input">
-                   <span class="input-group-text"><i class="bi bi-dash-lg"></i></span>
-                   <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="1">
-                   <span class="input-group-text">
-                     <i class="bi bi-plus-lg"></i>
-                   </span>
-                 </div>
-               </td>
-               <td><b>$5</b></td>
-             </tr> -->
+             <!-- add items dynamically using js -->
            </tbody>
          </table>
        </div>
 
-       <div class="total bold p-3">
-         Total: $1300
+       <div class="total bold p-3 js-total">
+         Total: $0.00
        </div>
 
        <!-- checkout -->

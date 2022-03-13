@@ -97,5 +97,6 @@ _Database tables_
 - add search feature using ajax
 
 - Add items to sale container
+- add to cart
 
   > ended #32 5.04min
