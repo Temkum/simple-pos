@@ -7,8 +7,8 @@
      <div class="bg-gray shadow-sm col-md-8 col-lg-6 me-3">
        <div class="input-group mb-3 w-75 p-2">
          <h4 class="me-4">Items</h4>
-         <input type="text" class="form-control js-search" placeholder="Search" aria-label=""
-           oninput="searchItem(event)">
+         <input onkeyup="checkForEnterKey(event)" type="text" class="form-control js-search" placeholder="Search"
+           aria-label="" oninput="searchItem(event)">
          <span class="input-group-text">
            <i class="bi bi-search"></i>
          </span>

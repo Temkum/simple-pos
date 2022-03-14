@@ -18,7 +18,7 @@ if (!empty($raw_data)) {
       if (!empty($data_obj['text'])) {
         # perform search
         $text = "%" . $data_obj['text'] . "%";
-        $query = "SELECT * FROM products WHERE description LIKE :find LIMIT 10";
+        $query = "SELECT * FROM products WHERE description LIKE :find || barcode = :find LIMIT 10";
         $rows = $products_data->query($query, ['find' => $text]);
       } else {
         // get data from db 

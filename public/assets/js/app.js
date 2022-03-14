@@ -1,5 +1,6 @@
 let PRODUCTS = [];
 let ITEMS = [];
+let BARCODE = false;
 
 // search feature
 function searchItem(e) {
@@ -158,6 +159,12 @@ function changeQty(direction, e) {
   }
 
   refreshItems();
+}
+
+function checkForEnterKey(e) {
+  if (e.keyCode == 13) {
+    BARCODE = true;
+  }
 }
 
 sendData({
