@@ -100,4 +100,4 @@ _Database tables_
 - add to cart
 - change quantity in cart
 
-  > ended #32 5.04min
+  > ended #53 12.20min

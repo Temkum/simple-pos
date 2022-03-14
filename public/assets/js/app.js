@@ -73,15 +73,15 @@ function productMarkup(data, index) {
          </div>`;
 }
 
-function itemMarkup(data) {
+function itemMarkup(data, index) {
   return `<tr>
             <td><img src="${data.image}" class="cart-img" alt="...">
             </td>
             <td class="text-muted">${data.description}
               <div class="input-group my-3 numba-input">
-                <span class="input-group-text"><i class="bi bi-dash-lg"></i></span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${data.qty}">
-                <span class="input-group-text">
+                <span index="${index}" onclick="changeQty('decrease', event)" class="input-group-text"><i class="bi bi-dash-lg"></i></span>
+                <input index="${index}" onblur="changeQty('input', event)" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="${data.qty}">
+                <span index="${index}" onclick="changeQty('increase', event)" class="input-group-text">
                   <i class="bi bi-plus-lg"></i>
                 </span>
               </div>
@@ -123,7 +123,7 @@ function refreshItems() {
   let grand_total = 0;
 
   for (let i = ITEMS.length - 1; i >= 0; i--) {
-    itemsDiv.innerHTML += itemMarkup(ITEMS[i]);
+    itemsDiv.innerHTML += itemMarkup(ITEMS[i], i);
     grand_total += ITEMS[i].qty * ITEMS[i].amount;
   }
 
@@ -138,6 +138,26 @@ function clearCart() {
     ITEMS = [];
     refreshItems();
   }
+}
+
+function changeQty(direction, e) {
+  let index = e.currentTarget.getAttribute("index");
+
+  if (direction == "increase") {
+    ITEMS[index].qty += 1;
+  } else if (direction == "decrease") {
+    ITEMS[index].qty -= 1;
+  } else {
+    // use parseInt to prevent decimals
+    ITEMS[index].qty = parseInt(e.currentTarget.value);
+  }
+
+  // prevent negative amt in qty
+  if (ITEMS[index].qty < 1) {
+    ITEMS[index].qty = 1;
+  }
+
+  refreshItems();
 }
 
 sendData({
