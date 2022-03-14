@@ -212,6 +212,29 @@ function checkForEnterKey(e) {
   }
 }
 
+function showModal(modal) {
+  if (modal == "amount_paid") {
+    if (ITEMS.length == 0) {
+      alert("Cart is empty. Please add at least 1 item!");
+      return;
+    }
+    let modal_div = document.querySelector(".js-paid-amt");
+    modal_div.classList.remove("hide");
+
+    modal_div.querySelector(".js-cash-input").value = "";
+    modal_div.querySelector(".js-cash-input").focus();
+  }
+}
+
+function hideModal(e, modal) {
+  if (modal == "amount_paid") {
+    if (e.target.getAttribute("role") == "close-button") {
+      let modal_div = document.querySelector(".js-paid-amt");
+      modal_div.classList.add("hide");
+    }
+  }
+}
+
 sendData({
   dataType: "search",
   text: "",

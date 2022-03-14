@@ -104,4 +104,6 @@ _Database tables_
 - add item using barcode
 - remove item from cart
 
+- checkout feature
+
   > ended #53 12.20min
