@@ -2,6 +2,8 @@ let PRODUCTS = [];
 let ITEMS = [];
 let BARCODE = false;
 
+let main_input = document.querySelector(".js-search");
+
 // search feature
 function searchItem(e) {
   const text = e.target.value.trim();
@@ -43,7 +45,12 @@ function sendData(data) {
         // console.log(ajax);
       }
       // set barcode to false after prod is added to cart
-      BARCODE = false;
+      // and clear input if enter is pressed
+      if (BARCODE) {
+        BARCODE = false;
+        main_input.value = "";
+        main_input.focus;
+      }
     }
   });
 

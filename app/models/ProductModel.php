@@ -1,23 +1,24 @@
 <?php
-    /**
-     * Product class
-     */
+
+/**
+ * Product class
+ */
 class ProductModel extends Model
 {
     protected $table = 'products';
-        
-    protected $allowed_columns = [
-            'description',
-            'barcode',
-            'qty',
-            'amount',
-            'user_id',
-            'image',
-            'views',
-            'date',
-            ];
 
-            // add $id for editing products
+    protected $allowed_columns = [
+        'description',
+        'barcode',
+        'qty',
+        'amount',
+        'user_id',
+        'image',
+        'views',
+        'date',
+    ];
+
+    // add $id for editing products
     public function validate($data, $id = null)
     {
         $errors = [];
@@ -43,7 +44,7 @@ class ProductModel extends Model
         // validate img
         $max_size = 4;
         $img_size = $max_size * (1024 * 1024);
-        
+
         // check if prod is present
         if (!$id || ($id && !empty($data['image']))) {
             # code...
@@ -51,10 +52,10 @@ class ProductModel extends Model
                 $errors['image'] = 'Product image is required!';
             } elseif (!($data['image']['type'] == 'image/jpeg' || $data['image']['type'] == 'image/jpg' || $data['image']['type'] == 'image/png')) {
                 $errors['image'] = 'Image must be a valid JPEG or PNG!';
-            }elseif ($data['image']['error'] > 0 ) {
-                $errors['image'] = 'Image upload failed. Error -'.  $data['image']['error'];
-            }elseif ($data['image']['size'] > $img_size ) {
-                $errors['image'] = 'Image size must be lower than' . $max_size.'MB';
+            } elseif ($data['image']['error'] > 0) {
+                $errors['image'] = 'Image upload failed. Error -' .  $data['image']['error'];
+            } elseif ($data['image']['size'] > $img_size) {
+                $errors['image'] = 'Image size must be lower than' . $max_size . 'MB';
             }
         }
 
@@ -63,11 +64,11 @@ class ProductModel extends Model
 
     public function generateBarcode()
     {
-        return "POS". rand(1000, 9999999);
+        return rand(1000, 9999999);
     }
-    
+
     public function generateFilename($ext = 'jpg')
     {
-        return hash('sha1', rand(1000, 9999999)) .'_'.rand(100, 999) . '.' . $ext;
+        return hash('sha1', rand(1000, 9999999)) . '_' . rand(100, 999) . '.' . $ext;
     }
 }
