@@ -109,7 +109,9 @@ function itemMarkup(data, index) {
                 </span>
               </div>
             </td>
-            <td><b>$${data.amount}</b></td>
+            <td><b>$${data.amount}</b>
+                <button onclick="clearCartItem(${index})" class="btn btn-danger float-end"><i class="bi bi-trash"></i></button>
+            </td>
           </tr>`;
 }
 
@@ -165,6 +167,22 @@ function clearCart() {
     ITEMS = [];
     refreshItems();
   }
+}
+
+/* function clearCartItem(index) {
+  if (!confirm("Sure you want to remove this item?!")) {
+    return;
+  } else {
+    // remove item from array
+    ITEMS.splice(index, 1);
+    refreshItems();
+  }
+} */
+
+function clearCartItem(index) {
+  // remove item from array
+  ITEMS.splice(index, 1);
+  refreshItems();
 }
 
 function changeQty(direction, e) {

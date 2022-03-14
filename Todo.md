@@ -102,5 +102,6 @@ _Database tables_
 
 - Add barcode search
 - add item using barcode
+- remove item from cart
 
   > ended #53 12.20min
