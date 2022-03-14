@@ -19,8 +19,20 @@ function sendData(data) {
   // get a response
   ajax.addEventListener("readystatechange", function (e) {
     if (ajax.readyState == 4) {
+      // empty the div
+      let myDiv = document.querySelector(".js-products");
+      myDiv.innerHTML = "";
+      PRODUCTS = [];
+
       if (ajax.status == 200) {
-        handleResult(ajax.responseText);
+        // check for empty string
+        if (ajax.responseText.trim() != "") {
+          handleResult(ajax.responseText);
+        } else {
+          if (BARCODE) {
+            alert("Item not found!");
+          }
+        }
       } else {
         console.log(
           "An error occurred with Err Code: " +
@@ -28,8 +40,10 @@ function sendData(data) {
             " Err msg:" +
             ajax.statusText
         );
-        console.log(ajax);
+        // console.log(ajax);
       }
+      // set barcode to false after prod is added to cart
+      BARCODE = false;
     }
   });
 
@@ -46,8 +60,6 @@ function handleResult(result) {
     // get valid json
     if (obj.dataType == "search") {
       let myDiv = document.querySelector(".js-products");
-      myDiv.innerHTML = "";
-      PRODUCTS = [];
 
       // verify if data exist
       if (obj.data != "") {
@@ -57,6 +69,9 @@ function handleResult(result) {
         // loop through db data
         for (let i = 0; i < obj.data.length; i++) {
           myDiv.innerHTML += productMarkup(obj.data[i], i);
+        }
+        if (BARCODE && PRODUCTS.length == 1) {
+          addItemFromIndex(0);
         }
       }
     }
@@ -95,22 +110,26 @@ function addItem(e) {
   if (e.target.tagName == "IMG") {
     let index = e.target.getAttribute("index");
 
-    // check if item exists in cart
-    for (let i = ITEMS.length - 1; i >= 0; i--) {
-      // add qty and refresh table
-      if (ITEMS[i].id == PRODUCTS[index].id) {
-        ITEMS[i].qty += 1;
-        refreshItems();
-        return;
-      }
-    }
-
-    let tempData = PRODUCTS[index];
-    tempData.qty = 1;
-
-    ITEMS.push(PRODUCTS[index]);
-    refreshItems();
+    addItemFromIndex(index);
   }
+}
+
+function addItemFromIndex(index) {
+  // check if item exists in cart
+  for (let i = ITEMS.length - 1; i >= 0; i--) {
+    // add qty and refresh table
+    if (ITEMS[i].id == PRODUCTS[index].id) {
+      ITEMS[i].qty += 1;
+      refreshItems();
+      return;
+    }
+  }
+
+  let tempData = PRODUCTS[index];
+  tempData.qty = 1;
+
+  ITEMS.push(PRODUCTS[index]);
+  refreshItems();
 }
 
 function refreshItems() {
@@ -164,6 +183,7 @@ function changeQty(direction, e) {
 function checkForEnterKey(e) {
   if (e.keyCode == 13) {
     BARCODE = true;
+    searchItem(e);
   }
 }
 
