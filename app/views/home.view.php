@@ -62,10 +62,26 @@
      <h5 class="bold">Checkout <i class="btn float-end btn-outline-lg bi bi-x-lg"
          onclick="hideModal(event, 'amount_paid')" role="close-button"></i></h5>
      <br>
-     <input type="number" name="" id="" class="form-control mb-2 js-cash-input" placeholder="Enter amount paid">
+     <input type="number" name="" id="jsChange" class="form-control mb-2 js-cash-input" placeholder="Enter amount paid">
      <br>
      <button class="btn btn-secondary" onclick="hideModal(event, 'amount_paid')" role="close-button">Cancel</button>
-     <button class="btn btn-primary float-end">Next</button>
+     <button class="btn btn-primary float-end" onclick="validateAmountPaid(event)">Next</button>
+   </div>
+ </div>
+
+ <!-- change modal -->
+ <div class="modals hide js-change" onclick="hideModal(event, 'change')" role="close-button">
+
+   <div class="modal-box js-modal">
+     <h5 class="bold">Change <i class="btn float-end btn-outline-lg bi bi-x-lg" onclick="hideModal(event, 'change')"
+         role="close-button"></i></h5>
+     <br>
+     <div class="js-change-input text-center form-control font-4"></div>
+     <br>
+     <center>
+       <button class="btn btn-secondary btn-lg" onclick="validateAmountPaid(event)"
+         role="close-button">Continue</button>
+     </center>
    </div>
  </div>
 

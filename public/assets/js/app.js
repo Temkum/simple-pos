@@ -1,6 +1,8 @@
 let PRODUCTS = [];
 let ITEMS = [];
 let BARCODE = false;
+let GRAND_TOTAL = 0;
+let CHANGE = 0;
 
 let main_input = document.querySelector(".js-search");
 
@@ -154,6 +156,7 @@ function refreshItems() {
   for (let i = ITEMS.length - 1; i >= 0; i--) {
     itemsDiv.innerHTML += itemMarkup(ITEMS[i], i);
     grand_total += ITEMS[i].qty * ITEMS[i].amount;
+    GRAND_TOTAL = grand_total;
   }
 
   let grandtotal_Div = document.querySelector(".js-total");
@@ -223,16 +226,42 @@ function showModal(modal) {
 
     modal_div.querySelector(".js-cash-input").value = "";
     modal_div.querySelector(".js-cash-input").focus();
+  } else if (modal == "change") {
+    let modal_div = document.querySelector(".js-change");
+    modal_div.classList.remove("hide");
+
+    modal_div.querySelector(".js-change-input").innerHTML = CHANGE;
   }
 }
 
 function hideModal(e, modal) {
-  if (modal == "amount_paid") {
-    if (e.target.getAttribute("role") == "close-button") {
+  if (e == true || e.target.getAttribute("role") == "close-button") {
+    if (modal == "amount_paid") {
       let modal_div = document.querySelector(".js-paid-amt");
+      modal_div.classList.add("hide");
+    } else if (modal == "change") {
+      let modal_div = document.querySelector(".js-change");
       modal_div.classList.add("hide");
     }
   }
+}
+
+function validateAmountPaid(e) {
+  // check for change
+  let amount = e.currentTarget.parentNode
+    .querySelector("#jsChange")
+    .value.trim();
+  amount = parseFloat(amount);
+
+  if (amount < GRAND_TOTAL) {
+    alert("Amount must be higher or equal to total!");
+    return;
+  }
+
+  CHANGE = (amount - GRAND_TOTAL).toFixed(2);
+
+  hideModal(true, "amount_paid");
+  showModal("change");
 }
 
 sendData({

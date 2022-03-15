@@ -142,3 +142,7 @@ center h4 .br-20 {
 		transform: translateY(0px);
 	}
 }
+
+.font-4 {
+	font-size: 4rem;
+}

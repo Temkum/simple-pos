@@ -105,5 +105,6 @@ _Database tables_
 - remove item from cart
 
 - checkout feature
+- show change after purchase
 
   > ended #53 12.20min
