@@ -23,11 +23,6 @@ function sendData(data) {
   // get a response
   ajax.addEventListener("readystatechange", function (e) {
     if (ajax.readyState == 4) {
-      // empty the div
-      let myDiv = document.querySelector(".js-products");
-      myDiv.innerHTML = "";
-      PRODUCTS = [];
-
       if (ajax.status == 200) {
         // check for empty string
         if (ajax.responseText.trim() != "") {
@@ -68,7 +63,11 @@ function handleResult(result) {
   if (typeof obj != "undefined") {
     // get valid json
     if (obj.dataType == "search") {
+      // empty the div
       let myDiv = document.querySelector(".js-products");
+      myDiv.innerHTML = "";
+
+      PRODUCTS = [];
 
       // verify if data exist
       if (obj.data != "") {
@@ -231,6 +230,7 @@ function showModal(modal) {
     modal_div.classList.remove("hide");
 
     modal_div.querySelector(".js-change-input").innerHTML = CHANGE;
+    modal_div.querySelector(".js-close-btn").focus;
   }
 }
 
@@ -251,10 +251,16 @@ function validateAmountPaid(e) {
   let amount = e.currentTarget.parentNode
     .querySelector("#jsChange")
     .value.trim();
+
+  if (amount == "") {
+    alert("Please enter a valid amount!");
+    document.querySelector(".js-cash-input").focus();
+    return;
+  }
   amount = parseFloat(amount);
 
   if (amount < GRAND_TOTAL) {
-    alert("Amount must be higher or equal to total!");
+    alert("Amount must be higher or equal to the total!");
     return;
   }
 
@@ -262,6 +268,16 @@ function validateAmountPaid(e) {
 
   hideModal(true, "amount_paid");
   showModal("change");
+
+  // send cart data through ajax
+  sendData({
+    dataType: "checkout",
+    text: ITEMS,
+  });
+
+  // clear cart items
+  ITEMS = [];
+  refreshItems();
 }
 
 sendData({
