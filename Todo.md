@@ -109,4 +109,6 @@ _Database tables_
 
 - checkout data and submit to db
 
+- Add user auth
+
   > ended #53 12.20min
