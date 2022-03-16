@@ -50,7 +50,7 @@ if (!empty($raw_data)) {
         $db = new Database();
 
         // read from db
-        foreach ($data as $row) {
+        foreach ($checkout_OBJ as $row) {
           $arr = [];
           $arr['id'] = $row['id'];
           $sql = "SELECT * FROM products WHERE id = :id LIMIT 1";
@@ -63,7 +63,7 @@ if (!empty($raw_data)) {
             # save to db
             $arr = [];
             $arr['barcode'] = $check_sql['barcode'];
-            $arr['receipt_num'] = $check_sql['receipt_num'];
+            $arr['receipt_num'] = $receipt_no;
             $arr['description'] = $check_sql['description'];
             $arr['qty'] = $row['qty'];
             $arr['amount'] = $check_sql['amount'];

@@ -53,11 +53,11 @@ function sendData(data) {
 
   //true so it runs in the background
   ajax.open("post", "index.php?page_name=ajax", true);
-  // convert obj to string & send
   ajax.send(JSON.stringify(data));
 }
 
 function handleResult(result) {
+  // console.log(result);
   let obj = JSON.parse(result);
 
   if (typeof obj != "undefined") {
