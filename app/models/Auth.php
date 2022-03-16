@@ -1,6 +1,6 @@
 <?php
 
-class Authentication
+class Auth
 {
   public static function getUserData($column)
   {
@@ -39,5 +39,23 @@ class Authentication
       return true;
     }
     return false;
+  }
+
+  public static function setMessage($msg)
+  {
+
+    $_SESSION['message'] = $msg;
+  }
+
+  public static function getMessage()
+  {
+    # code...
+    if (!empty($_SESSION['message'])) {
+
+      $message = $_SESSION['message'];
+      unset($_SESSION['message']);
+
+      return $message;
+    }
   }
 }

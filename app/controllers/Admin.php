@@ -7,4 +7,10 @@ if ($tab == 'products') {
   $products = $product_class->query("SELECT * FROM products ORDER BY id DESC");
 }
 
-require viewsPath('admin/admin');
+if (Auth::access('supervisor')) {
+  require viewsPath('admin/admin');
+} else {
+  Auth::setMessage('You do not have rights to access this page!');
+
+  require viewsPath('auth/access');
+}
