@@ -43,7 +43,6 @@ class Auth
 
   public static function setMessage($msg)
   {
-
     $_SESSION['message'] = $msg;
   }
 

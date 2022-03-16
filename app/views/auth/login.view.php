@@ -1,6 +1,6 @@
  <?php
- require viewsPath('partials/header');
-    ?>
+  require viewsPath('partials/header');
+  ?>
 
  <div class="signup container-fluid col-lg-4 col-xg-6 col-md-6 col-sm-8 border mt-5 p-3 shadow">
    <center class="text-uppercase mb-5">
@@ -36,11 +36,10 @@
 
    <div class="row mt-3">
      <span>
-       Don't have an account? <a href="index.php?page_name=signup">Signup here</a>
+       Don't have an account? <a href="index.php?page_name=signup">Create user</a>
      </span>
    </div>
  </div>
 
 
  <?php require viewsPath('partials/footer');
-  

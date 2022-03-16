@@ -10,19 +10,27 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php?page_name=home">Dashboard</a>
         </li>
+
+        <?php if (Auth::access('admin')) : ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php?page_name=admin">Admin</a>
         </li>
+        <?php endif; ?>
+
+        <?php if (!Auth::loggedIn()) : ?>
         <li class="nav-item">
           <a class="nav-link" href="index.php?page_name=login">Login</a>
         </li>
+        <?php endif; ?>
+
+        <?php if (Auth::loggedIn()) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page_name=signup">Register</a>
+          <a class="nav-link" href="index.php?page_name=signup">Create user</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="index.php?page_name=pos" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
-            Hi, <?= auth('username') ?>
+            Hi, <?= auth('username') ?> (<?= Auth::getUserData('role') ?>)
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="index.php?page_name=profile">Profile</a></li>
@@ -31,6 +39,7 @@
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" href="index.php?page_name=logout">Logout</a></li>
+            <?php endif; ?>
           </ul>
         </li>
       </ul>

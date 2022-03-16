@@ -4,7 +4,7 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = new UserModel();
-    
+
     $_POST['role'] = 'user';
     $_POST['date'] = date('Y-m-d H:i:s');
 
@@ -19,4 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-require viewsPath('auth/signup');
+if (Auth::access('admin')) {
+    require viewsPath('auth/signup');
+} else {
+    Auth::setMessage('You need admin rights to create users!');
+
+    require viewsPath('auth/access');
+}

@@ -110,5 +110,6 @@ _Database tables_
 - checkout data and submit to db
 
 - Add user auth
+- modify auth class and user role
 
   > ended #53 12.20min
