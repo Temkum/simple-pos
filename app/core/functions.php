@@ -124,3 +124,16 @@ function cropImg($filename, $size = 600)
 
     return $cropped_file;
 }
+
+function getReceiptNum()
+{
+    $num = 1;
+
+    $db = new Database;
+    $rows = $db->query("SELECT receipt_no FROM sales ORDER BY id DESC LIMIT 1");
+
+    if (is_array($rows)) {
+        # code...
+        $num = (int)$rows[0]['receipt_num'] + 1;
+    }
+}

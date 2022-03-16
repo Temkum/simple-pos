@@ -249,7 +249,7 @@ function hideModal(e, modal) {
 function validateAmountPaid(e) {
   // check for change
   let amount = e.currentTarget.parentNode
-    .querySelector("#jsChange")
+    .querySelector("#js_change")
     .value.trim();
 
   if (amount == "") {
@@ -269,10 +269,22 @@ function validateAmountPaid(e) {
   hideModal(true, "amount_paid");
   showModal("change");
 
+  // remove unused data
+  let NEW_ITEMS = [];
+
+  for (let i = 0; i < ITEMS.length; i++) {
+    let tmp = {};
+
+    tmp.id = ITEMS[i]["id"];
+    tmp.qty = ITEMS[i]["qty"];
+
+    NEW_ITEMS.push(tmp);
+  }
+
   // send cart data through ajax
   sendData({
     dataType: "checkout",
-    text: ITEMS,
+    text: NEW_ITEMS,
   });
 
   // clear cart items

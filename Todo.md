@@ -107,4 +107,6 @@ _Database tables_
 - checkout feature
 - show change after purchase
 
+- checkout data and submit to db
+
   > ended #53 12.20min

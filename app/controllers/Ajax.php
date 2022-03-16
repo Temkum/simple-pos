@@ -39,6 +39,51 @@ if (!empty($raw_data)) {
 
         echo json_encode($info);
       }
+    } else {
+      if ($data_obj['dataType'] == 'checkout') {
+        // get 1 item at a time and save to db
+        $checkout_OBJ = $data_obj['text'];
+        $receipt_no = getReceiptNum();
+        $user_id = auth('id');
+        $date = date('Y-m-d H:i:s');
+
+        $db = new Database();
+
+        // read from db
+        foreach ($data as $row) {
+          $arr = [];
+          $arr['id'] = $row['id'];
+          $sql = "SELECT * FROM products WHERE id = :id LIMIT 1";
+          $check_sql = $db->query($sql, $arr);
+
+          if (is_array($arr)) {
+            // get the first item
+            $check_sql = $check_sql[0];
+
+            # save to db
+            $arr = [];
+            $arr['barcode'] = $check_sql['barcode'];
+            $arr['receipt_num'] = $check_sql['receipt_num'];
+            $arr['description'] = $check_sql['description'];
+            $arr['qty'] = $row['qty'];
+            $arr['amount'] = $check_sql['amount'];
+            $arr['total'] = $row['qty'] * $check_sql['amount'];
+            $arr['user_id'] = $user_id;
+            $arr['date'] = $date;
+
+            $sql = "INSERT INTO sales (barcode, receipt_num, description, qty, amount, total, user_id, date) VALUES(:barcode, :receipt_num, :description, :qty, :amount, :total, :user_id, :date)";
+
+            $db->query($sql, $arr);
+          }
+        }
+
+
+
+        $info['dataType'] = 'checkout';
+        $info['dataType'] = 'Item saved successfully!';
+
+        echo json_encode($info);
+      }
     }
   }
 }
