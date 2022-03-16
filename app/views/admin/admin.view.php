@@ -7,20 +7,26 @@ require viewsPath('partials/header');
   <div class="me-3 col-xs-12 col-sm-4 col-md-3 col-lg-2 m-sm-2">
     <ul class="list-group">
       <a href="index.php?page_name=admin&tab=dashboard">
-        <li class="list-group-item <?= !$tab || $tab == 'dashboard' ? 'active' : ''?>">
+        <li class="list-group-item <?= !$tab || $tab == 'dashboard' ? 'active' : '' ?>">
           <i class="bi bi-grid"></i> Dashboard
         </li>
       </a>
 
       <a href="index.php?page_name=admin&tab=users">
-        <li class="list-group-item <?= $tab == 'users' ? 'active' : ''?>">
+        <li class="list-group-item <?= $tab == 'users' ? 'active' : '' ?>">
           <i class="bi bi-people"></i> Users
         </li>
       </a>
 
       <a href="index.php?page_name=admin&tab=products">
-        <li class="list-group-item <?= $tab == 'products' ? 'active' : ''?>">
+        <li class="list-group-item <?= $tab == 'products' ? 'active' : '' ?>">
           <i class="bi bi-stack"></i> Products
+        </li>
+      </a>
+
+      <a href="index.php?page_name=admin&tab=sales">
+        <li class="list-group-item <?= $tab == 'sales' ? 'active' : '' ?>">
+          <i class="bi bi-currency-dollar"></i> Sales
         </li>
       </a>
 
@@ -33,12 +39,18 @@ require viewsPath('partials/header');
   </div>
 
   <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 border p-2 shadow-sm radius-4">
-    <h4><?= strtoupper($tab)?></h4>
+    <h4><?= strtoupper($tab) ?></h4>
 
-    <?php 
+    <?php
     switch ($tab) {
       case 'products':
         require viewsPath('admin/products');
+        break;
+      case 'users':
+        require viewsPath('admin/users');
+        break;
+      case 'sales':
+        require viewsPath('admin/sales');
         break;
       default:
         # code...
@@ -50,4 +62,4 @@ require viewsPath('partials/header');
 </div>
 
 <?php
-    require viewsPath('partials/footer');
+require viewsPath('partials/footer');

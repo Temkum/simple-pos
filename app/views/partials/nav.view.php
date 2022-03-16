@@ -8,12 +8,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php?page_name=home">Dashboard</a>
+          <a class="nav-link active" aria-current="page" href="index.php?page_name=home">POS |</a>
         </li>
 
         <?php if (Auth::access('admin')) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page_name=admin">Admin</a>
+          <a class="nav-link" href="index.php?page_name=admin">Admin |</a>
         </li>
         <?php endif; ?>
 
@@ -25,7 +25,7 @@
 
         <?php if (Auth::loggedIn()) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page_name=signup">Create user</a>
+          <a class="nav-link" href="index.php?page_name=signup">Create user |</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="index.php?page_name=pos" id="navbarDropdown" role="button"
