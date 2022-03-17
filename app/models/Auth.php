@@ -26,6 +26,7 @@ class Auth
 
   public static function access($role)
   {
+    $access['super_admin'] = ['super_admin'];
     $access['admin'] = ['admin'];
     $access['supervisor'] = ['admin', 'supervisor'];
     $access['cashier'] = ['admin', 'supervisor', 'cashier'];

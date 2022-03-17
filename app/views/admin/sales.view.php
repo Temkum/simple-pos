@@ -1,4 +1,16 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Table view</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Graph view</a>
+  </li>
+</ul>
+<br>
+
 <div class="table-responsive">
+  <!-- sales total -->
+  <h3 class="alert">Today's total: $<?= number_format($sales_total, 2) ?></h3>
   <table class="table table-stripped table-hover">
     <thead>
       <tr>

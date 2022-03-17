@@ -117,6 +117,6 @@ _Database tables_
 - delete user
 - restrict user delete
 
-- Sales table
+- Sales table - add daily sales
 
   > ended #53 12.20min
