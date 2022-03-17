@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $user->insert($_POST, 'users');
 
-        redirect('home');
+        redirect('admin&tab=users');
     }
 }
 

@@ -114,5 +114,6 @@ _Database tables_
 
 - modify user section
 - edit user feature
+- delete user
 
   > ended #53 12.20min
