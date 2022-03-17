@@ -49,7 +49,7 @@ function auth($column)
     return 'Guest';
 }
 
-function cropImg($filename, $size = 600)
+function cropImg($filename, $size = 400, $type = 'product')
 {
     $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
@@ -58,6 +58,17 @@ function cropImg($filename, $size = 600)
     // prevent file from cropping twice
     if (file_exists($cropped_file)) {
         return $cropped_file;
+    }
+
+    // if file to be cropped doesn't exist
+    if (!file_exists($filename)) {
+        if ($type == 'male') {
+            return 'assets/images/male-avatar.jpg';
+        } else if ($type == 'female') {
+            return 'assets/images/girl-avatar.png';
+        } else {
+            return 'assets/images/u2.jpg';
+        }
     }
 
     // create img resource using file extension
