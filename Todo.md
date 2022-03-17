@@ -115,5 +115,8 @@ _Database tables_
 - modify user section
 - edit user feature
 - delete user
+- restrict user delete
+
+- Sales table
 
   > ended #53 12.20min

@@ -47,9 +47,9 @@
    </form>
    <?php else : ?>
    <?php if (is_array($row) && $row['deletable']) : ?>
-   <div class="alert alert-danger text-center mb-3">User cannot be deleted!</div>
+   <div class="alert alert-info text-center mb-3">User was not found!</div>
    <?php else : ?>
-   <div class="alert alert-danger text-center mb-3">User was not found!</div>
+   <div class="alert alert-info text-center mb-3">User cannot be deleted!</div>
    <?php endif; ?>
 
    <a href="index.php?page_name=admin&tab=users">

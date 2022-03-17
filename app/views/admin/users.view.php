@@ -41,10 +41,13 @@
               <button class="btn btn-success btn-sm">Edit</button>
             </a>
             <?php if ($user['role'] != 'admin') : ?>
+            <!-- <a href="index.php?page_name=delete_user&id=<?= $user['id'] ?>">
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </a> -->
+            <?php endif; ?>
             <a href="index.php?page_name=delete_user&id=<?= $user['id'] ?>">
               <button class="btn btn-danger btn-sm">Delete</button>
             </a>
-            <?php endif; ?>
           </div>
         </td>
       </tr>
