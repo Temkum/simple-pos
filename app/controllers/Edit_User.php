@@ -9,18 +9,28 @@ $row = $user->getSingle(['id' => $id]);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+  // ensure only admins can create admins
+  if ($_POST['role'] == 'admin') {
 
-  $_POST['role'] = 'user';
-  $_POST['date'] = date('Y-m-d H:i:s');
+    if (!Auth::getUserData('role') == 'admin') {
+      $_POST['role'] = 'worker';
+    }
+  }
 
-  $errors = $user->validate($_POST);
+
+  $errors = $user->validate($_POST, $id);
 
   if (empty($errors)) {
-    $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    // hash pwd if present
+    if (empty($_POST['password'])) {
+      unset($_POST['password']);
+    } else {
+      $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    }
 
-    $user->insert($_POST, 'users');
+    $user->update($id, $_POST);
 
-    redirect('home');
+    redirect('admin&tab=users');
   }
 }
 

@@ -43,10 +43,10 @@
 
      <div class="input-group mb-3">
        <span class="input-group-text" id="basic-addon1">Gender</span>
-       <select name="" id="" class="form-control">
-         <option value=""><?= $row['gender'] ?></option>
-         <option value="">Female</option>
-         <option value="">Male</option>
+       <select name="gender" id="" class="form-control">
+         <option><?= ucfirst($row['gender']) ?></option>
+         <option>male</option>
+         <option>female</option>
        </select>
        <?php if (!empty($errors['gender'])) : ?>
        <small class="text-danger col-12 p-1"><?= $errors['gender'] ?></small>
@@ -55,11 +55,11 @@
 
      <div class="input-group mb-3">
        <span class="input-group-text" id="basic-addon1">Role</span>
-       <select name="" id="" class="form-control">
-         <option value="">Role</option>
-         <option value=""><?= $row['role'] ?></option>
-         <option value="">Supervisor</option>
-         <option value="">Cashier</option>
+       <select name="role" id="" class="form-control">
+         <option><?= ucfirst($row['role']) ?></option>
+         <option>admin</option>
+         <option>supervisor</option>
+         <option>cashier</option>
        </select>
        <?php if (!empty($errors['role'])) : ?>
        <small class="text-danger col-12 p-1"><?= $errors['role'] ?></small>

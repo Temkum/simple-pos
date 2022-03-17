@@ -7,16 +7,17 @@ class UserModel extends Model
 {
     protected $table = 'users';
     protected $allowed_columns = [
-            'name',
-            'username',
-            'email',
-            'role',
-            'password',
-            'image',
-            'date',
-            ];
+        'name',
+        'username',
+        'email',
+        'role',
+        'password',
+        'image',
+        'date',
+        'gender'
+    ];
 
-    public function validate($data)
+    public function validate($data, $id = null)
     {
         $errors = [];
 
@@ -38,12 +39,24 @@ class UserModel extends Model
             $errors['email'] = 'Email is not valid!';
         }
 
-        if (empty($data['password'])) {
-            $errors['password'] = 'Password is required!';
-        } elseif ($data['password'] !== $data['repeat_pwd']) {
-            $errors['repeat_pwd'] = 'Passwords do not match!';
-        } elseif (strlen($data['password']) < 6) {
-            $errors['password'] = 'Password must be at least 6 characters!';
+        // mute validation for user update
+        if (!$id) {
+            # code...
+            if (empty($data['password'])) {
+                $errors['password'] = 'Password is required!';
+            } elseif ($data['password'] !== $data['repeat_pwd']) {
+                $errors['repeat_pwd'] = 'Passwords do not match!';
+            } elseif (strlen($data['password']) < 6) {
+                $errors['password'] = 'Password must be at least 6 characters!';
+            }
+        } else {
+            if (!empty($data['password'])) {
+                if ($data['password'] !== $data['repeat_pwd']) {
+                    $errors['repeat_pwd'] = 'Passwords do not match!';
+                } elseif (strlen($data['password']) < 6) {
+                    $errors['password'] = 'Password must be at least 6 characters!';
+                }
+            }
         }
 
         return $errors;
