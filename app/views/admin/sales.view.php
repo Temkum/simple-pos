@@ -2,14 +2,15 @@
   <table class="table table-stripped table-hover">
     <thead>
       <tr>
-        <th>Barcode</th>
+        <th>Receipt Number</th>
         <th>Description</th>
         <th>Qty</th>
         <th>Price</th>
         <th>Total</th>
+        <th>Cashier</th>
         <th>Date</th>
         <th>
-          <a href="index.php?page_name=add-product">
+          <a href="index.php?page_name=home">
             <button class="btn btn-success btn-sm"><i class="bi bi-plus-lg"></i> Add new</button>
           </a>
         </th>
@@ -20,14 +21,11 @@
       <?php foreach ($sales as $sale) : ?>
       <tr>
         <td><?= esc($sale['barcode']) ?></td>
-        <td>
-          <a href="index.php?page_name=sale_details&id=<?= $sale['id'] ?>">
-            <?= esc($sale['description']) ?>
-          </a>
-        </td>
+        <td><?= esc($sale['description']) ?></td>
         <td><?= esc($sale['qty']) ?></td>
         <td><?= esc($sale['amount']) ?></td>
         <td><?= esc($sale['total']) ?></td>
+        <td><?= esc($sale['user_id']) ?></td>
         <td><?= date("jS M, Y", strtotime($sale['date'])) ?></td>
         <td>
           <div class="btn-group">
