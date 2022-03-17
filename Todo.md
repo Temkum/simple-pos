@@ -118,5 +118,6 @@ _Database tables_
 - restrict user delete
 
 - Sales table - add daily sales
+- product view count
 
   > ended #53 12.20min

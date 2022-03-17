@@ -14,16 +14,17 @@ if (!empty($raw_data)) {
 
       // create model instance
       $products_data = new ProductModel();
+      $limit = 20;
 
       if (!empty($data_obj['text'])) {
         # perform search
         $text = "%" . $data_obj['text'] . "%";
         $barcode_search = $data_obj['text'];
-        $query = "SELECT * FROM products WHERE description LIKE :find || barcode = :barcode_search LIMIT 10";
+        $query = "SELECT * FROM products WHERE description LIKE :find || barcode = :barcode_search ORDER BY views DESC LIMIT $limit";
         $rows = $products_data->query($query, ['find' => $text, 'barcode_search' => $barcode_search]);
       } else {
         // get data from db 
-        $rows = $products_data->getAll();
+        $rows = $products_data->getAll($limit, 0, 'DESC', 'views');
       }
 
       // loop through rows before echo
@@ -72,12 +73,13 @@ if (!empty($raw_data)) {
             $arr['date'] = $date;
 
             $sql = "INSERT INTO sales (barcode, receipt_num, description, qty, amount, total, user_id, date) VALUES(:barcode, :receipt_num, :description, :qty, :amount, :total, :user_id, :date)";
-
             $db->query($sql, $arr);
+
+            // add view count
+            $sql = "UPDATE products SET views = views + 1 WHERE id = :id LIMIT 1";
+            $db->query($sql, ['id' => $check_sql['id']]);
           }
         }
-
-
 
         $info['dataType'] = 'checkout';
         $info['dataType'] = 'Item saved successfully!';

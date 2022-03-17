@@ -290,6 +290,12 @@ function validateAmountPaid(e) {
   // clear cart items
   ITEMS = [];
   refreshItems();
+
+  // reload products
+  sendData({
+    dataType: "search",
+    text: "",
+  });
 }
 
 sendData({
