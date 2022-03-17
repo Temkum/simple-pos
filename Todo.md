@@ -113,5 +113,6 @@ _Database tables_
 - modify auth class and user role
 
 - modify user section
+- edit user feature
 
   > ended #53 12.20min
