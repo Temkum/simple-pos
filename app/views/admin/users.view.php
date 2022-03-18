@@ -57,4 +57,6 @@
     </tbody>
   </table>
 
+  <?php $pagination->display(); ?>
+
 </div>

@@ -32,13 +32,13 @@
       <?php if (!empty($sales)) : ?>
       <?php foreach ($sales as $sale) : ?>
       <tr>
-        <td><?= esc($sale['barcode']) ?></td>
-        <td><?= esc($sale['description']) ?></td>
-        <td><?= esc($sale['qty']) ?></td>
-        <td><?= esc($sale['amount']) ?></td>
-        <td><?= esc($sale['total']) ?></td>
-        <td><?= esc($sale['user_id']) ?></td>
-        <td><?= date("jS M, Y", strtotime($sale['date'])) ?></td>
+        <td><?= esc($sale["barcode"]) ?></td>
+        <td><?= esc($sale["description"]) ?></td>
+        <td><?= esc($sale["qty"]) ?></td>
+        <td><?= esc($sale["amount"]) ?></td>
+        <td><?= esc($sale["total"]) ?></td>
+        <td><?= esc($sale["user_id"]) ?></td>
+        <td><?= date("jS M, Y", strtotime($sale["date"])) ?></td>
         <td>
           <div class="btn-group">
             <a href="index.php?page_name=editsale&id=<?= $sale['id'] ?>">
@@ -55,5 +55,7 @@
       <?php endif; ?>
     </tbody>
   </table>
+
+  <?php $pagination->display(); ?>
 
 </div>

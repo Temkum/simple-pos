@@ -120,4 +120,6 @@ _Database tables_
 - Sales table - add daily sales
 - product view count
 
+- pagination
+
   > ended #53 12.20min

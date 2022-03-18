@@ -4,13 +4,31 @@ $tab = $_GET['tab'] ?? 'dashboard';
 
 if ($tab == 'products') {
   $product_class = new ProductModel();
-  $products = $product_class->query("SELECT * FROM products ORDER BY id DESC");
+
+  // pagination
+  $limit = 8;
+  $pagination = new Pagination($limit);
+  $offset = $pagination->offset;
+
+  $products = $product_class->query("SELECT * FROM products ORDER BY id DESC LIMIT $limit OFFSET $offset");
 } else if ($tab == 'users') {
   $user_class = new UserModel();
-  $users = $user_class->query("SELECT * FROM users ORDER BY id DESC");
+
+  // pagination
+  $limit = 3;
+  $pagination = new Pagination($limit);
+  $offset = $pagination->offset;
+
+  $users = $user_class->query("SELECT * FROM users ORDER BY id DESC LIMIT $limit OFFSET $offset");
 } else if ($tab == 'sales') {
-  $sale_class = new UserModel();
-  $sales = $sale_class->query("SELECT * FROM sales ORDER BY id DESC");
+  $sale_class = new SaleModel();
+
+  // pagination
+  $limit = 6;
+  $pagination = new Pagination($limit);
+  $offset = $pagination->offset;
+
+  $sales = $sale_class->query("SELECT * FROM sales ORDER BY id DESC LIMIT $limit OFFSET $offset");
 
   $year = date('Y');
   $month = date('m');
