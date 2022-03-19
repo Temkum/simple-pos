@@ -57,6 +57,6 @@
     </tbody>
   </table>
 
-  <?php $pagination->display(); ?>
+  <?php $pagination->display(count($users)); ?>
 
 </div>

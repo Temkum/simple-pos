@@ -45,5 +45,6 @@
       <?php endif; ?>
     </tbody>
   </table>
+  <?php $pagination->display(count($products)); ?>
 
 </div>

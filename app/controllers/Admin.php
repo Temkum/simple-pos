@@ -15,7 +15,7 @@ if ($tab == 'products') {
   $user_class = new UserModel();
 
   // pagination
-  $limit = 3;
+  $limit = 8;
   $pagination = new Pagination($limit);
   $offset = $pagination->offset;
 
@@ -24,7 +24,7 @@ if ($tab == 'products') {
   $sale_class = new SaleModel();
 
   // pagination
-  $limit = 6;
+  $limit = 8;
   $pagination = new Pagination($limit);
   $offset = $pagination->offset;
 

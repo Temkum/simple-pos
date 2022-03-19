@@ -2,10 +2,11 @@
 
 class Pagination
 {
-  protected $limit = 10;
+  protected $limit = 8;
   public $offset = 0;
+  public $pg_steps = 3;
 
-  public function __construct($limit = 10)
+  public function __construct($limit = 8)
   {
     $this->limit = (int)$limit;
     $page_number = $this->getPageNumber();
@@ -51,8 +52,18 @@ class Pagination
     return $url;
   }
 
-  public function display()
+  public function display($rec_count = null)
   {
+    // remove pagination if rec count is less than limit
+    if (!$rec_count) {
+      $rec_count = $this->limit;
+    }
+
+    if (!$rec_count < $this->limit) {
+      return;
+    }
+
+    $page_number = $this->getPageNumber();
 ?>
 <nav aria-label="...">
   <ul class="pagination">
@@ -61,16 +72,39 @@ class Pagination
     </li>
     <li class="page-item">
       <?Php
-          $pg_num = $this->getPageNumber() - 1;
+          $pg_num = $page_number - 1;
           $pg_num = ($pg_num < 1) ? 1 : $pg_num;
           ?>
       <a class="page-link" href="<?= $this->createPageLink($pg_num) ?>" tabindex="-1" aria-disabled="true">Prev</a>
     </li>
-    <li class="page-item active"><a class="page-link" href="<?= $this->createPageLink(1) ?>">1</a></li>
-    <li class="page-item" aria-current="page">
-      <a class="page-link" href="<?= $this->createPageLink(2) ?>">2</a>
+
+    <?php
+        $p = $this->pg_steps;
+        for ($i = 1; $i <= $this->pg_steps; $i++) {
+          if (($page_number - $p) < 1) {
+            $p--;
+            continue;
+          }
+
+          echo '<li class="page-item"><a class="page-link"
+                    href="' . $this->createPageLink($page_number - $p) . '">' . $page_number - $p . '</a>
+          </li>';
+          $p--;
+        }
+        ?>
+
+    <li class="page-item active"><a class="page-link"
+        href="<?= $this->createPageLink($page_number) ?>"><?= $page_number ?></a>
     </li>
-    <li class="page-item"><a class="page-link" href="<?= $this->createPageLink(3) ?>">3</a></li>
+
+    <?php
+        for ($i = 1; $i < $this->pg_steps; $i++) {
+          echo '<li class="page-item"><a class="page-link"
+                    href="' . $this->createPageLink($page_number + $i) . '">' . $page_number + $i . '</a>
+          </li>';
+        }
+        ?>
+
     <li class="page-item">
       <a class="page-link" href="<?= $this->createPageLink($this->getPageNumber() + 1) ?>">Next</a>
     </li>
