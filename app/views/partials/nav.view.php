@@ -13,7 +13,10 @@
 
         <?php if (Auth::access('admin')) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?page_name=admin">Admin |</a>
+          <a class="nav-link" href="index.php?page_name=admin">Admin Dashboard |</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?page_name=signup">Create user</a>
         </li>
         <?php endif; ?>
 
@@ -24,10 +27,7 @@
         <?php endif; ?>
 
         <?php if (Auth::loggedIn()) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?page_name=signup">Create user |</a>
-        </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ms-5">
           <a class="nav-link dropdown-toggle" href="index.php?page_name=pos" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             Hi, <?= auth('username') ?> (<?= Auth::getUserData('role') ?>)

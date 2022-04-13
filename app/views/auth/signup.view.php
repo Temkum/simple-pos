@@ -40,6 +40,17 @@
      </div>
 
      <div class="input-group mb-3">
+       <span class="input-group-text" id="basic-addon1">Gender</span>
+       <select name="gender" id="" class="form-control">
+         <option>male</option>
+         <option>female</option>
+       </select>
+       <?php if (!empty($errors['gender'])) : ?>
+       <small class="text-danger col-12 p-1"><?= $errors['gender'] ?></small>
+       <?php endif; ?>
+     </div>
+
+     <div class="input-group mb-3">
        <span class="input-group-text" id="basic-addon1">Password</span>
        <input type="password" class="form-control <?= !empty($errors['password']) ? 'border-danger' : '' ?>"
          placeholder="Enter password" aria-label="Password" name="password" value="<?= setValue('password') ?>">
@@ -64,11 +75,11 @@
      <button class="btn btn-primary float-end" type="submit">Create user</button>
    </form>
 
-   <div class="row mt-3">
+   <!-- <div class="row mt-3">
      <span>
        Already have an account? <a href="index.php?page_name=login">Login here</a>
      </span>
-   </div>
+   </div> -->
  </div>
 
 

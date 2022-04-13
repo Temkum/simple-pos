@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 }
 
-if (Auth::access('admin')) {
+if (Auth::access('admin') || ($row && $row['id'] == Auth::getUserData('id'))) {
   require viewsPath('auth/profile');
 } else {
   Auth::setMessage('You need admin rights to create users!');

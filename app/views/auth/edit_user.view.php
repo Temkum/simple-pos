@@ -53,10 +53,11 @@
        <?php endif; ?>
      </div>
 
+     <?php if (Auth::getUserData('role') == 'admin') : ?>
      <div class="input-group mb-3">
        <span class="input-group-text" id="basic-addon1">Role</span>
        <select name="role" id="" class="form-control">
-         <option><?= ucfirst($row['role']) ?></option>
+         <option><?= $row['role'] ?></option>
          <option>admin</option>
          <option>supervisor</option>
          <option>cashier</option>
@@ -65,6 +66,7 @@
        <small class="text-danger col-12 p-1"><?= $errors['role'] ?></small>
        <?php endif; ?>
      </div>
+     <?php endif; ?>
 
      <div class="input-group mb-3">
        <span class="input-group-text" id="basic-addon1">Password</span>

@@ -10,10 +10,10 @@ $row = $user->getSingle(['id' => $id]);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   // ensure only admins can create admins
-  if ($_POST['role'] == 'admin') {
+  if (isset($_POST['role']) && $_POST['role'] != $row['role']) {
 
-    if (!Auth::getUserData('role') == 'admin') {
-      $_POST['role'] = 'worker';
+    if (Auth::getUserData('role') != 'admin') {
+      $_POST['role'] = $row['role'];
     }
   }
 
@@ -30,11 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $user->update($id, $_POST);
 
-    redirect('admin&tab=users');
+    redirect("edit_user&id=$id");
   }
 }
 
-if (Auth::access('admin')) {
+if (Auth::access('admin') || ($row && $row['id'] == Auth::getUserData('id'))) {
   require viewsPath('auth/edit_user');
 } else {
   Auth::setMessage('You need admin rights to create users!');
