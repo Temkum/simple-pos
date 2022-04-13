@@ -56,6 +56,6 @@
     </tbody>
   </table>
 
-  <?php $pagination->display(count($sales)); ?>
+  <?php $pagination->display(); ?>
 
 </div>

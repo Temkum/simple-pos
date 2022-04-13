@@ -59,7 +59,7 @@ class Pagination
       $rec_count = $this->limit;
     }
 
-    if (!$rec_count < $this->limit) {
+    if ($rec_count < $this->limit) {
       return;
     }
 
