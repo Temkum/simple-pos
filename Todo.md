@@ -122,4 +122,5 @@ _Database tables_
 
 - pagination
 
-  > ended #53 12.20min
+- profile page
+- add a getdate function

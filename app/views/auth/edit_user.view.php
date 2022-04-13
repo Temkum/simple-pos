@@ -5,7 +5,7 @@
  <div class="signup container-fluid col-lg-4 col-xg-5 col-md-6 col-sm-10 border mt-5 p-3 shadow">
    <center class="text-uppercase mb-5">
      <span><i class="bi bi-person-circle icon-style mb-2"></i></span>
-     <h3>Update User</h3>
+     <h3>Edit User</h3>
      <div><?= esc(APP_NAME) ?></div>
    </center>
 
@@ -95,7 +95,7 @@
    <?php else : ?>
    <div class="alert alert-danger text-center mb-3">User was not found!</div>
    <a href="index.php?page_name=admin&tab=users">
-     <button class="btn btn-secondary" type="button">Go back</button>
+     <button class="btn btn-secondary" type="button"><i class="bi bi-arrow-left"></i> Go back</button>
    </a>
    <?php endif; ?>
  </div>

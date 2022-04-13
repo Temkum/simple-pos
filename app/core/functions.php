@@ -150,3 +150,8 @@ function getReceiptNum()
 
     return $num;
 }
+
+function getDateHuman($date)
+{
+    return date("jS M, Y", strtotime($date));
+}
