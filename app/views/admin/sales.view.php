@@ -1,17 +1,38 @@
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Table view</a>
+    <a class="nav-link <?= ($section == 'table') ? 'active' : '' ?>" aria-current="page"
+      href="index.php?page_name=admin&tab=sales&section=table">Table view</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Graph view</a>
+    <a class="nav-link <?= ($section == 'graph') ? 'active' : '' ?>"
+      href="index.php?page_name=admin&tab=sales&section=graph">Graph
+      view</a>
   </li>
 </ul>
 <br>
 
+<?php if ($section == 'table') : ?>
+<div>
+  <form class="row float-end justify-content-center">
+    <div class="col">
+      <label for="start">Start Date</label>
+      <input id="start" type="date" name="start" class="form-control">
+    </div>
+    <div class="col">
+      <label for="end">End Date</label>
+      <input id="end" type="date" name="end" class="form-control">
+    </div>
+    <button class="btn btn-primary mt-2 btn-sm w-50 text-center">Go</button>
+
+    <input type="hidden" name="page_name" value="admin">
+    <input type="hidden" name="tab" value="sales">
+  </form>
+  <div class="clearfix"></div>
+</div>
 <div class="table-responsive">
   <!-- sales total -->
   <h3 class="alert">Today's total: $<?= number_format($sales_total, 2) ?></h3>
-  <table class="table table-stripped table-hover">
+  <table class=" table table-stripped table-hover">
     <thead>
       <tr>
         <th>Receipt Number</th>
@@ -39,16 +60,16 @@
         <td><?= esc($sale["total"]) ?></td>
 
         <?php
-            $cashier = getUserById($sale["user_id"]);
+              $cashier = getUserById($sale["user_id"]);
 
-            if (empty($cashier)) {
-              $name = 'Unknown';
-              $name_link = '#';
-            } else {
-              $name = $cashier['username'];
-              $name_link = "index.php?page_name=profile&id=" . $cashier['id'];
-            }
-            ?>
+              if (empty($cashier)) {
+                $name = 'Unknown';
+                $name_link = '#';
+              } else {
+                $name = $cashier['username'];
+                $name_link = "index.php?page_name=profile&id=" . $cashier['id'];
+              }
+              ?>
 
         <td>
           <a href="<?= $name_link ?>">
@@ -74,5 +95,7 @@
   </table>
 
   <?php $pagination->display(); ?>
-
 </div>
+<?php else : ?>
+<h2>Graph view</h2>
+<?php endif; ?>

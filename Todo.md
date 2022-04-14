@@ -127,3 +127,6 @@ _Database tables_
 
 - edit & delete sales
 - Modify profile image of current user
+
+- Date input
+- load specific record within dates

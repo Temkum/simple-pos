@@ -1,6 +1,7 @@
 <?php
 
 $tab = $_GET['tab'] ?? 'dashboard';
+$section = $_GET['section'] ?? 'table';
 
 if ($tab == 'products') {
   $product_class = new ProductModel();
