@@ -14,8 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row) {
 
   if (empty($errors)) {
 
+    $_POST['total'] = $row['qty'] * $_POST['amount'];
 
-    $product->update($row['id'], $_POST);
+    $sale->update($row['id'], $_POST);
 
     redirect('admin&tab=sales');
   }

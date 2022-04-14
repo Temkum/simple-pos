@@ -155,3 +155,9 @@ function getDateHuman($date)
 {
     return date("jS M, Y", strtotime($date));
 }
+
+function getUserById($id)
+{
+    $user = new UserModel();
+    return $user->getSingle(['id' => $id]);
+}
