@@ -126,3 +126,4 @@ _Database tables_
 - add a getdate function
 
 - edit & delete sales
+- Modify profile image of current user

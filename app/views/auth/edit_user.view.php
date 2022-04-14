@@ -18,7 +18,7 @@
    </center>
 
    <?php if (is_array($row)) : ?>
-   <form action="" method="POST" enctype="">
+   <form method="POST" enctype="multipart/form-data">
      <div class="input-group mb-3">
        <span class="input-group-text" id="basic-addon1">Name</span>
        <input type="text" class="form-control <?= !empty($errors['name']) ? 'border-danger' : '' ?>"
@@ -27,6 +27,19 @@
        <?php if (!empty($errors['name'])) : ?>
        <small class="text-danger col-12 p-1"><?= $errors['name'] ?></small>
        <?php endif; ?>
+     </div>
+
+     <div class="mb-1">
+       <input type="file" class="form-control <?= !empty($errors['image']) ? 'border-danger' : '' ?>"
+         aria-label="Product Image" aria-describedby="basic-addon2" name="image">
+       <?php if (!empty($errors['image'])) : ?>
+       <small class="text-danger col-12 p-1"><?= $errors['image'] ?></small>
+       <?php endif; ?>
+     </div>
+     <br>
+     <!-- load img -->
+     <div class="text-center mb-3">
+       <img src="<?= $row['image'] ?>" alt="" width="50%" class="img-fluid img-thumbnail mb-2 ">
      </div>
 
      <div class="input-group mb-3">
