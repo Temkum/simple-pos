@@ -4,8 +4,11 @@ $errors = [];
 $user = new UserModel();
 
 $id = $_GET['id'] ?? null;
-
 $row = $user->getSingle(['id' => $id]);
+
+if (!empty($_SERVER['HTTP_REFERER'])) {
+  $_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

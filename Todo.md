@@ -124,3 +124,5 @@ _Database tables_
 
 - profile page
 - add a getdate function
+
+- edit & delete sales

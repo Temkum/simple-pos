@@ -2,6 +2,14 @@
   require viewsPath('partials/header');
   ?>
 
+ <?php
+  if (!empty($_SESSION['referer'])) {
+    $back_link = $_SESSION['referer'];
+  } else {
+    $back_link = "index.php?page_name=admin&tab=users";
+  }
+  ?>
+
  <div class="signup container-fluid col-lg-4 col-xg-5 col-md-6 col-sm-10 border mt-5 p-3 shadow">
    <center class="text-uppercase mb-5">
      <span><i class="bi bi-person-circle icon-style mb-2"></i></span>
@@ -89,14 +97,15 @@
      </div>
 
      <br>
-     <a href="index.php?page_name=admin&tab=users">
-       <button class="btn btn-danger" type="button">Go back</button>
+
+     <a href="<?= $back_link ?>">
+       <button class="btn btn-warning" type="button">Go back</button>
      </a>
      <button class="btn btn-primary float-end" type="submit">Update</button>
    </form>
    <?php else : ?>
    <div class="alert alert-danger text-center mb-3">User was not found!</div>
-   <a href="index.php?page_name=admin&tab=users">
+   <a href="<?= $back_link ?>">
      <button class="btn btn-secondary" type="button"><i class="bi bi-arrow-left"></i> Go back</button>
    </a>
    <?php endif; ?>
