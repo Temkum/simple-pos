@@ -41,10 +41,10 @@
         <td><?= date("jS M, Y", strtotime($sale["date"])) ?></td>
         <td>
           <div class="btn-group">
-            <a href="index.php?page_name=editsale&id=<?= $sale['id'] ?>">
+            <a href="index.php?page_name=edit_sale&id=<?= $sale['id'] ?>">
               <button class="btn btn-success btn-sm">Edit</button>
             </a>
-            <a href="index.php?page_name=deletesale&id=<?= $sale['id'] ?>">
+            <a href="index.php?page_name=delete_sale&id=<?= $sale['id'] ?>">
               <button class="btn btn-danger btn-sm">Delete</button>
             </a>
           </div>
