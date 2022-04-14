@@ -6,7 +6,8 @@ $user = new UserModel();
 $id = $_GET['id'] ?? null;
 $row = $user->getSingle(['id' => $id]);
 
-if (!empty($_SERVER['HTTP_REFERER'])) {
+// if there's a reference & it doesn't contain edit_user pg name
+if (!empty($_SERVER['HTTP_REFERER']) && !strstr($_SERVER['HTTP_REFERER'], "edit_user")) {
   $_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
 }
 
