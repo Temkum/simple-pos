@@ -1,3 +1,13 @@
+<style>
+.w-10 {
+  width: 40%;
+}
+
+#limit {
+  width: 80px;
+}
+</style>
+
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link <?= ($section == 'table') ? 'active' : '' ?>" aria-current="page"
@@ -16,13 +26,20 @@
   <form class="row float-end justify-content-center">
     <div class="col">
       <label for="start">Start Date</label>
-      <input id="start" type="date" name="start" class="form-control">
+      <input id="start" type="date" name="start" class="form-control"
+        value="<?= !empty($_GET['start']) ? $_GET['start'] : '' ?>">
     </div>
     <div class="col">
       <label for="end">End Date</label>
-      <input id="end" type="date" name="end" class="form-control">
+      <input id="end" type="date" name="end" class="form-control"
+        value="<?= !empty($_GET['end']) ? $_GET['end'] : '' ?>">
     </div>
-    <button class="btn btn-primary mt-2 btn-sm w-50 text-center">Go</button>
+    <div class="col">
+      <label for="end">Rows</label>
+      <input id="limit" type="number" min="1" name="limit" class="form-control"
+        value="<?= !empty($_GET['limit']) ? $_GET['limit'] : '' ?>">
+    </div>
+    <button class="btn btn-primary mt-2 btn-sm w-10 text-center">Go</button>
 
     <input type="hidden" name="page_name" value="admin">
     <input type="hidden" name="tab" value="sales">

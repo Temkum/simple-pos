@@ -130,3 +130,5 @@ _Database tables_
 
 - Date input
 - load specific record within dates
+- add view template
+- set query for date range
