@@ -13,9 +13,9 @@ svg {
 }
 
 svg polyline {
-  stroke-width: 4;
-  stroke: #ccc;
-  fill: #00000044;
+  stroke-width: 2;
+  stroke: #ddd;
+  fill: #ddd;
 }
 
 svg circle {
@@ -175,9 +175,34 @@ svg circle:hover {
 <svg class="border" viewBox="0 0 <?= $canvasX ?> <?= $canvasY ?>">
   <!-- top to bottom lines -->
   <?php
-    // foreach ($variable as $key => $value) {
-    //   # code...
-    // }
+    for ($i = 0; $i < $max_X; $i++) {
+      $x1 = $i * $multiplier_X;
+      $y1 = 0;
+
+      $x2 = $x1;
+      $y2 = $canvasY;
+    ?>
+  <polyline points="<?= $x1 ?>,<?= $y1 ?> <?= $x2 ?>,<?= $y2 ?>" />
+
+  <?php
+    }
+    ?>
+  <polyline points="<?= $points ?>" />
+
+  <!-- left to right lines -->
+  <?php
+    $max_lines = $max_Y / $multiplier_Y;
+    for ($i = 0; $i < $max_lines; $i++) {
+      $x1 = 0;
+      $x2 = $canvasX;
+
+      $y1 = $i * $max_lines;
+      $y2 = $y1;
+    ?>
+  <polyline points="<?= $x1 ?>,<?= $y1 ?> <?= $x2 ?>,<?= $y2 ?>" />
+
+  <?php
+    }
     ?>
   <polyline points="<?= $points ?>" />
   <!-- <circle r="4" cx="100" cy="100" />
