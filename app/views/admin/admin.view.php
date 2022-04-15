@@ -26,7 +26,7 @@ require viewsPath('partials/header');
 
       <a href="index.php?page_name=admin&tab=sales">
         <li class="list-group-item <?= $tab == 'sales' ? 'active' : '' ?>">
-          <i class="bi bi-currency-dollar"></i> Sales
+          <i class="bi bi-cash-stack"></i> Sales
         </li>
       </a>
 

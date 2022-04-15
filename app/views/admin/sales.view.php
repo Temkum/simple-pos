@@ -6,6 +6,27 @@
 #limit {
   width: 80px;
 }
+
+svg {
+  width: 100%;
+  height: 400px;
+}
+
+svg polyline {
+  stroke-width: 4;
+  stroke: #ccc;
+  fill: #00000044;
+}
+
+svg circle {
+  stroke-width: 4;
+  stroke: #ccc;
+  fill: white;
+}
+
+svg circle:hover {
+  stroke: pink;
+}
 </style>
 
 <ul class="nav nav-tabs">
@@ -106,7 +127,6 @@
         </td>
       </tr>
       <?php endforeach; ?>
-
       <?php endif; ?>
     </tbody>
   </table>
@@ -114,5 +134,53 @@
   <?php $pagination->display(); ?>
 </div>
 <?php else : ?>
-<h2>Graph view</h2>
+<h2>Graph</h2>
+
+<!-- graph data -->
+<?php
+  $canvasX = 1000;
+  $canvasY = 400;
+
+  $data = [];
+  $data['Jan'] = 50;
+  $data['Feb'] = 10;
+  $data['Mar'] = 30;
+  $data['Apr'] = 60;
+  $data['May'] = 70;
+  $data['Jun'] = 40;
+  $data['Jul'] = 90;
+  $data['Aug'] = 100;
+  $data['Sep'] = 20;
+  $data['Oct'] = 80;
+  $data['Nov'] = 50;
+  $data['Dec'] = 60;
+
+  $max_Y = max($data);
+  $max_X = count($data);
+
+  $multiplier_Y = $canvasY / $max_Y;
+  $multiplier_X = $canvasX / $max_X;
+
+  // create a num to use since key is not a number
+  $num = 1;
+  $points = "0, $canvasY ";
+
+  foreach ($data as $key => $value) {
+    $points .= $multiplier_X * $num . "," . $canvasY - ($value * $multiplier_Y) . " ";
+    $num++;
+  }
+  $points .= "$canvasX, $canvasY";
+  ?>
+
+<svg class="border" viewBox="0 0 <?= $canvasX ?> <?= $canvasY ?>">
+  <!-- top to bottom lines -->
+  <?php
+    // foreach ($variable as $key => $value) {
+    //   # code...
+    // }
+    ?>
+  <polyline points="<?= $points ?>" />
+  <!-- <circle r="4" cx="100" cy="100" />
+  <circle r="4" cx="200" cy="150" /> -->
+</svg>
 <?php endif; ?>

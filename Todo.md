@@ -132,3 +132,5 @@ _Database tables_
 - load specific record within dates
 - add view template
 - set query for date range
+
+- build graph using svg
