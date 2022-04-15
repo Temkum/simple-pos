@@ -48,7 +48,7 @@
 </div>
 <div class="table-responsive">
   <!-- sales total -->
-  <h3 class="alert">Today's total: $<?= number_format($sales_total, 2) ?></h3>
+  <h4>Today's total: <span class="text-success">$<?= number_format($sales_total, 2) ?></span></h4>
   <table class=" table table-stripped table-hover">
     <thead>
       <tr>

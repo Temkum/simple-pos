@@ -46,35 +46,23 @@ if ($tab == 'products') {
 
   //date range if both start and end date are set
   if ($start_date && $end_date) {
-    $start_year = date('Y', strtotime($start_date));
-    $start_month = date('m', strtotime($start_date));
-    $start_day = date('d', strtotime($start_date));
+    $range_query = "SELECT * FROM sales WHERE date BETWEEN '$start_date' AND '$end_date' ORDER BY id DESC LIMIT $limit OFFSET $offset";
 
-    $end_yr = date('Y', strtotime($end_date));
-    $end_month = date('m', strtotime($end_date));
-    $end_day = date('d', strtotime($end_date));
-
-    $range_query = "SELECT * FROM sales WHERE (YEAR(date) >= '$start_year' && MONTH(date) >= '$start_month' && DAY(date) >= '$start_day') && (YEAR(date) <= '$start_year' && MONTH(date) <= '$start_month' && DAY(date) <= '$start_day') ORDER BY id ASC LIMIT $limit OFFSET $offset";
-
-    $sql_total = "SELECT sum(total) as total FROM sales WHERE (YEAR(date) >= '$start_year' && MONTH(date) >= '$start_month' && DAY(date) >= '$start_day')";
+    $sql_total = "SELECT sum(total) as total FROM sales WHERE date BETWEEN '$start_date' AND '$end_date' ";
   } else {
 
     //if only start is set
     if ($start_date && !$end_date) {
-      $start_year = date('Y', strtotime($start_date));
-      $start_month = date('m', strtotime($start_date));
-      $start_day = date('d', strtotime($start_date));
+      $range_query = "SELECT * FROM sales WHERE date = '$start_date' ORDER BY id ASC LIMIT $limit OFFSET $offset";
 
-      $range_query = "SELECT * FROM sales WHERE (YEAR(date) = '$start_year' && MONTH(date) = '$start_month' && DAY(date) = '$start_day') ORDER BY id ASC LIMIT $limit OFFSET $offset";
-
-      $sql_total = "SELECT sum(total) as total FROM sales WHERE (YEAR(date) = '$start_year' && MONTH(date) = '$start_month' && DAY(date) = '$start_day')";
+      $sql_total = "SELECT sum(total) as total FROM sales WHERE date = $start_date ";
     }
   }
 
   $sales = $sale_class->query($sales_query);
 
   $total_sales = $sale_class->query($sql_total);
-  $salesTotal = 0;
+  $sales_total = 0;
 
   if ($total_sales) {
     $sales_total = $total_sales[0]['total'] ?? 0;
