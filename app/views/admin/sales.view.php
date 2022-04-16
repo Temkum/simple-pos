@@ -30,7 +30,7 @@ svg circle:hover {
 
 svg text {
   fill: rebeccapurple;
-  font-size: 15px;
+  font-size: 12px;
 }
 </style>
 
@@ -179,10 +179,13 @@ svg text {
   $points .= "$canvasX, $canvasY";
 
   $extraX = 100;
-  $extraY = ($max_Y / $multiplier_Y);
+  $extraY = 50;
+  // $extraY = ($max_Y / $multiplier_Y);
+
+  $totalYLines = 0;
   ?>
 
-<svg class="border" viewBox="0 -<?= $extraY ?> <?= $canvasX + $extraX * 2 ?> <?= $canvasY + $extraY ?>">
+<svg class="border" viewBox="0 -<?= $extraY ?> <?= $canvasX + $extraX ?> <?= $canvasY + ($extraY * 2) ?>">
 
   <!-- top to bottom lines -->
   <?php
@@ -198,21 +201,17 @@ svg text {
   <?php
     }
     ?>
-  <polyline points="<?= $points ?>" />
 
   <!-- left to right lines -->
   <?php
-    $max_lines = $max_Y / $multiplier_Y;
+    $max_lines = count($data);
+    $Y_segment = round($canvasY / $max_lines); //
+
     for ($i = 0; $i < $max_lines; $i++) {
       $x1 = 0;
-      $y1 = $i * $max_lines;
+      $y1 = $i * $Y_segment;
       $x2 = $canvasX;
       $y2 = $y1;
-
-      if ($y1 > $canvasY) {
-        $total_Ylines = $i - 1;
-        break;
-      }
     ?>
   <polyline points="<?= $x1 ?>,<?= $y1 ?> <?= $x2 ?>,<?= $y2 ?>" />
   <?php
@@ -233,26 +232,29 @@ svg text {
     ?>
 
   <!-- x text values-->
-  <?php $num = 0; ?>
   <?php
+    $num = 0;
     foreach ($xText as $value) : $num++ ?>
-  <text x="<?= $num * $multiplier_X ?>" y="<?= $canvasY ?>"><?= $value ?></text>
+  <text x="<?= ($num * $multiplier_X) - $multiplier_X / 5 ?>" y="<?= $canvasY + ($extraY / 1.5) ?>"><?= $value ?></text>
   <?php endforeach; ?>
 
-  <!-- y values -->
+  <!-- y text values -->
   <?php
-    $max_lines = $max_Y / $multiplier_Y;
+    $max_lines = count($data);
+    $Y_segment = round($canvasY / $max_lines); //
     $num = $max_Y;
+
     for ($i = 0; $i < $max_lines; $i++) {
       $x = $canvasX;
-      $y = $i * $max_lines;
+      $y = $i * $Y_segment;
       if (round($num) < 0) {
         break;
       }
     ?>
-  <text x="<?= $x - ($multiplier_X / 20) ?>" y="<?= $y ?>"><?= round($num) ?></text>
+  <text x="<?= $x - ($multiplier_X / 30) ?>" y="<?= $y ?>"><?= round($num) ?></text>
   <?php
-      $num -= $max_Y / $total_Ylines;
+      $max_lines = $max_lines ? $max_lines : 1;
+      $num -= $max_Y / $max_lines;
     }
     ?>
 
