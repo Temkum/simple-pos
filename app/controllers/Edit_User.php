@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $user->update($id, $_POST);
 
-    redirect("edit_user&id=$id");
+    redirect("profile&id=$id");
   }
 }
 

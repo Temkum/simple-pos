@@ -3,6 +3,10 @@
   ?>
 
  <div class="signup container-fluid col-lg-4 col-xg-5 col-md-6 col-sm-10 border mt-5 p-3 shadow">
+   <a href="index.php?page_name=admin&tab=users">
+     <button class="btn btn-outline-secondary" type="button"><i class="bi bi-arrow-left"></i> Go back</button>
+   </a>
+
    <center class="text-uppercase mb-5">
      <span><i class="bi bi-person-lines-fill icon-style mb-2"></i></span>
      <h5>User Profile</h5>
