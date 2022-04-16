@@ -136,3 +136,5 @@ _Database tables_
 - build graph using svg
 - create graph class
 - read data from database
+
+- dashboard view

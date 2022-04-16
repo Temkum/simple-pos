@@ -12,6 +12,20 @@ if ($tab == 'products') {
   $offset = $pagination->offset;
 
   $products = $product_class->query("SELECT * FROM products ORDER BY id DESC LIMIT $limit OFFSET $offset");
+} else if ($tab == 'dashboard') {
+  $db = new Database;
+
+  $sql = "SELECT count(id) as total FROM users";
+  $my_users = $db->query($sql);
+  $total_users = $my_users[0]['total'];
+
+  $sql = "SELECT count(id) as total FROM products";
+  $my_prods = $db->query($sql);
+  $total_products = $my_users[0]['total'];
+
+  $sql = "SELECT sum(total) as total FROM sales";
+  $my_sales = $db->query($sql);
+  $total_sales = $my_sales[0]['total'];
 } else if ($tab == 'users') {
   $user_class = new UserModel();
 

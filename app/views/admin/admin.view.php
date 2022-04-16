@@ -53,7 +53,7 @@ require viewsPath('partials/header');
         require viewsPath('admin/sales');
         break;
       default:
-        # code...
+        require viewsPath('admin/dashboard');
         break;
     }
     ?>
