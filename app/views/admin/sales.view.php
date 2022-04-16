@@ -8,8 +8,8 @@
 }
 
 svg {
-  width: 100%;
-  height: 400px;
+  width: 80%;
+  height: 500px;
 }
 
 svg polyline {
@@ -20,12 +20,17 @@ svg polyline {
 
 svg circle {
   stroke-width: 4;
-  stroke: #ccc;
+  stroke: #ddd;
   fill: white;
 }
 
 svg circle:hover {
   stroke: pink;
+}
+
+svg text {
+  fill: rebeccapurple;
+  font-size: 15px;
 }
 </style>
 
@@ -155,6 +160,8 @@ svg circle:hover {
   $data['Nov'] = 50;
   $data['Dec'] = 60;
 
+  $xText = array_keys($data);
+
   $max_Y = max($data);
   $max_X = count($data);
 
@@ -170,9 +177,13 @@ svg circle:hover {
     $num++;
   }
   $points .= "$canvasX, $canvasY";
+
+  $extraX = 100;
+  $extraY = ($max_Y / $multiplier_Y);
   ?>
 
-<svg class="border" viewBox="0 0 <?= $canvasX ?> <?= $canvasY ?>">
+<svg class="border" viewBox="0 -<?= $extraY ?> <?= $canvasX + $extraX * 2 ?> <?= $canvasY + $extraY ?>">
+
   <!-- top to bottom lines -->
   <?php
     for ($i = 0; $i < $max_X; $i++) {
@@ -194,18 +205,56 @@ svg circle:hover {
     $max_lines = $max_Y / $multiplier_Y;
     for ($i = 0; $i < $max_lines; $i++) {
       $x1 = 0;
-      $x2 = $canvasX;
-
       $y1 = $i * $max_lines;
+      $x2 = $canvasX;
       $y2 = $y1;
+
+      if ($y1 > $canvasY) {
+        $total_Ylines = $i - 1;
+        break;
+      }
     ?>
   <polyline points="<?= $x1 ?>,<?= $y1 ?> <?= $x2 ?>,<?= $y2 ?>" />
-
   <?php
     }
     ?>
+
   <polyline points="<?= $points ?>" />
-  <!-- <circle r="4" cx="100" cy="100" />
-  <circle r="4" cx="200" cy="150" /> -->
+
+  <?php
+    $num = 1;
+    $points = "0,$canvasY ";
+    foreach ($data as $key => $value) {
+    ?>
+  <circle r="8" cx="<?= $multiplier_X * $num ?>" cy="<?= $canvasY - ($value * $multiplier_Y) ?>" />
+  <?php
+      $num++;
+    }
+    ?>
+
+  <!-- x text values-->
+  <?php $num = 0; ?>
+  <?php
+    foreach ($xText as $value) : $num++ ?>
+  <text x="<?= $num * $multiplier_X ?>" y="<?= $canvasY ?>"><?= $value ?></text>
+  <?php endforeach; ?>
+
+  <!-- y values -->
+  <?php
+    $max_lines = $max_Y / $multiplier_Y;
+    $num = $max_Y;
+    for ($i = 0; $i < $max_lines; $i++) {
+      $x = $canvasX;
+      $y = $i * $max_lines;
+      if (round($num) < 0) {
+        break;
+      }
+    ?>
+  <text x="<?= $x - ($multiplier_X / 20) ?>" y="<?= $y ?>"><?= round($num) ?></text>
+  <?php
+      $num -= $max_Y / $total_Ylines;
+    }
+    ?>
+
 </svg>
 <?php endif; ?>
