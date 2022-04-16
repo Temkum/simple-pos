@@ -32,6 +32,11 @@ svg text {
   fill: rebeccapurple;
   font-size: 12px;
 }
+
+svg text tspan {
+  font-size: 1.2rem;
+  width: 80%;
+}
 </style>
 
 <ul class="nav nav-tabs">
@@ -139,19 +144,26 @@ svg text {
   <?php $pagination->display(); ?>
 </div>
 <?php else : ?>
-<h2>Graph</h2>
 
 <!-- graph data -->
 <?php
   $graph = new Graph();
-  $data = [];
+
   $data = generateDailyData($today_records);
-
+  $graph->title = "Today's sales";
   $graph->display($data);
-
-  // test data 
-  // show($data);
-  show($this_month_records);
-  show($this_year_records);
   ?>
+<br />
+<?php
+  $data = generateMonthlyData($this_month_records);
+  $graph->title = "Monthly sales";
+  $graph->display($data);
+  ?>
+<br />
+<?php
+  $data = generateYearlyData($this_year_records);
+  $graph->title = "Yearly sales";
+  $graph->display($data);
+  ?>
+<br>
 <?php endif; ?>

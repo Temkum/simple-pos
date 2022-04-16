@@ -5,6 +5,7 @@ class Graph
   public $canvasX = 1000;
   public $canvasY = 400;
   public $font_size = 16;
+  public $title = 'Graph title';
 
   public function display($data)
   {
@@ -110,6 +111,11 @@ class Graph
         $num -= $max_Y / $max_lines;
       }
       ?>
+
+  <!-- graph title -->
+  <text x="10" y="<?= ($extraY - 70) ?>">
+    <tspan><?= $this->title ?></tspan>
+  </text>
 </svg>
 <?php
   }

@@ -185,7 +185,43 @@ function generateDailyData($records)
 
 function generateMonthlyData($records)
 {
+    # create a monthly record
+    $arr = [];
+    $total_days = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+
+    for ($i = 1; $i <= $total_days; $i++) {
+        // check if day is set
+        if (!isset($arr[$i])) {
+            $arr[$i] = 1;
+        }
+        // loop to get records
+        foreach ($records as $row) {
+            $day = date('d', strtotime($row['date']));
+            if ($day == $i) {
+                $arr[$i] = $row['total'];
+            }
+        }
+    }
+    return $arr;
 }
 function generateYearlyData($records)
 {
+    $arr = [];
+    // convert month to text
+    $months = ['0', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    for ($i = 1; $i <= 12; $i++) {
+
+        if (!isset($arr[$i])) {
+            $arr[$i] = 0;
+        }
+        // loop to get records
+        foreach ($records as $row) {
+            $month = date('m', strtotime($row['date']));
+            if ($month == $i) {
+                $arr[$i] = $row['total'];
+            }
+        }
+    }
+    return $arr;
 }
