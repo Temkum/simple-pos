@@ -75,17 +75,17 @@ if ($tab == 'products') {
 
     // query today's records
     $today = date('Y-m-d');
-    $query = "SELECT total FROM sales WHERE DATE(date)='$today' ";
+    $query = "SELECT total, date FROM sales WHERE DATE(date)='$today' ";
     $today_records = $db->query($query);
 
     // query month's records
     $this_month = date('m');
     $this_year = date('Y');
-    $query = "SELECT total FROM sales WHERE month(date) = '$this_month' AND year(date)='$this_year' ";
+    $query = "SELECT total, date FROM sales WHERE month(date) = '$this_month' AND year(date)='$this_year' ";
     $this_month_records = $db->query($query);
 
     // query year's records
-    $query = "SELECT total FROM sales WHERE year(date)='$this_year' ";
+    $query = "SELECT total, date FROM sales WHERE year(date)='$this_year' ";
     $this_year_records = $db->query($query);
   }
 }

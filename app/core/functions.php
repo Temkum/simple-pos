@@ -161,3 +161,31 @@ function getUserById($id)
     $user = new UserModel();
     return $user->getSingle(['id' => $id]);
 }
+
+function generateDailyData($records)
+{
+    # create a 24hr record
+    $arr = [];
+
+    for ($i = 0; $i < 24; $i++) {
+        // check if hour is set
+        if (!isset($arr[$i])) {
+            $arr[$i] = 0;
+        }
+        // loop to get records
+        foreach ($records as $row) {
+            $hour = date('H', strtotime($row['date']));
+            if ($hour == $i) {
+                $arr[$i] = $row['total'];
+            }
+        }
+    }
+    return $arr;
+}
+
+function generateMonthlyData($records)
+{
+}
+function generateYearlyData($records)
+{
+}

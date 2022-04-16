@@ -145,11 +145,13 @@ svg text {
 <?php
   $graph = new Graph();
   $data = [];
+  $data = generateDailyData($today_records);
 
-  // test data week
-  show($today_records);
+  $graph->display($data);
+
+  // test data 
+  // show($data);
   show($this_month_records);
   show($this_year_records);
-  // $graph->display($data);
   ?>
 <?php endif; ?>
