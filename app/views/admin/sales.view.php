@@ -146,25 +146,10 @@ svg text {
   $graph = new Graph();
   $data = [];
 
-  // test data
-  for ($i = 0; $i < 31; $i++) {
-    $data[$i] = rand(0, 500);
-  }
-
-  $graph->display($data);
-
-  $data = [];
-
   // test data week
-  for ($i = 0; $i < 7; $i++) {
-    $data[$i] = rand(0, 500);
-  }
-  $graph->display($data);
-
-  // test data day
-  for ($i = 0; $i < 12; $i++) {
-    $data[$i] = rand(0, 500);
-  }
-  $graph->display($data);
+  show($today_records);
+  show($this_month_records);
+  show($this_year_records);
+  // $graph->display($data);
   ?>
 <?php endif; ?>

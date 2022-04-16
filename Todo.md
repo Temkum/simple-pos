@@ -134,4 +134,5 @@ _Database tables_
 - set query for date range
 
 - build graph using svg
-- add graph to
+- create graph class
+- read data from database

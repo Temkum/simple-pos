@@ -67,6 +67,27 @@ if ($tab == 'products') {
   if ($total_sales) {
     $sales_total = $total_sales[0]['total'] ?? 0;
   }
+
+  // graph data
+  if ($section == 'graph') {
+    # read graph data
+    $db = new Database();
+
+    // query today's records
+    $today = date('Y-m-d');
+    $query = "SELECT total FROM sales WHERE DATE(date)='$today' ";
+    $today_records = $db->query($query);
+
+    // query month's records
+    $this_month = date('m');
+    $this_year = date('Y');
+    $query = "SELECT total FROM sales WHERE month(date) = '$this_month' AND year(date)='$this_year' ";
+    $this_month_records = $db->query($query);
+
+    // query year's records
+    $query = "SELECT total FROM sales WHERE year(date)='$this_year' ";
+    $this_year_records = $db->query($query);
+  }
 }
 
 if (Auth::access('supervisor')) {
