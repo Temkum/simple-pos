@@ -21,7 +21,7 @@ if ($tab == 'products') {
 
   $sql = "SELECT count(id) as total FROM products";
   $my_prods = $db->query($sql);
-  $total_products = $my_users[0]['total'];
+  $total_products = $my_prods[0]['total'];
 
   $sql = "SELECT sum(total) as total FROM sales";
   $my_sales = $db->query($sql);
