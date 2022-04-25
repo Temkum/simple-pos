@@ -138,3 +138,4 @@ _Database tables_
 - read data from database
 
 - dashboard view
+- print receipt

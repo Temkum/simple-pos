@@ -287,6 +287,15 @@ function validateAmountPaid(e) {
     text: NEW_ITEMS,
   });
 
+  // open receipt page
+  printReceipt({
+    company: 'myPOS',
+    amount: amount,
+    change: CHANGE,
+    grand_total: GRAND_TOTAL,
+    data: ITEMS,
+  });
+
   // clear cart items
   ITEMS = [];
   refreshItems();
@@ -296,6 +305,16 @@ function validateAmountPaid(e) {
     dataType: 'search',
     text: '',
   });
+}
+
+function printReceipt(obj) {
+  let vars = JSON.stringify(obj);
+
+  window.open(
+    'index.php?page_name=print&vars=' + vars,
+    'printpage',
+    'width=500px;'
+  );
 }
 
 sendData({
