@@ -34,11 +34,11 @@
      </div>
    </form>
 
-   <div class="row mt-3">
+   <!-- <div class="row mt-3">
      <span>
        Don't have an account? <a href="index.php?page_name=signup">Create user</a>
      </span>
-   </div>
+   </div> -->
  </div>
 
 

@@ -204,6 +204,7 @@ function generateMonthlyData($records)
     }
     return $arr;
 }
+
 function generateYearlyData($records)
 {
     $arr = [];
