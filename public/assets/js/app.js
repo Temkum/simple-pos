@@ -4,14 +4,14 @@ let BARCODE = false;
 let GRAND_TOTAL = 0;
 let CHANGE = 0;
 
-let main_input = document.querySelector('.js-search');
+let main_input = document.querySelector(".js-search");
 
 // search feature
 function searchItem(e) {
   const text = e.target.value.trim();
 
   const data = {};
-  data.dataType = 'search';
+  data.dataType = "search";
   data.text = text;
 
   sendData(data);
@@ -21,22 +21,22 @@ function sendData(data) {
   let ajax = new XMLHttpRequest();
 
   // get a response
-  ajax.addEventListener('readystatechange', function (e) {
+  ajax.addEventListener("readystatechange", function (e) {
     if (ajax.readyState == 4) {
       if (ajax.status == 200) {
         // check for empty string
-        if (ajax.responseText.trim() != '') {
+        if (ajax.responseText.trim() != "") {
           handleResult(ajax.responseText);
         } else {
           if (BARCODE) {
-            alert('Item not found!');
+            alert("Item not found!");
           }
         }
       } else {
         console.log(
-          'An error occurred with Err Code: ' +
+          "An error occurred with Err Code: " +
             ajax.status +
-            ' Err msg:' +
+            " Err msg:" +
             ajax.statusText
         );
         // console.log(ajax);
@@ -45,14 +45,14 @@ function sendData(data) {
       // and clear input if enter is pressed
       if (BARCODE) {
         BARCODE = false;
-        main_input.value = '';
+        main_input.value = "";
         main_input.focus;
       }
     }
   });
 
   //true so it runs in the background
-  ajax.open('post', 'index.php?page_name=ajax', true);
+  ajax.open("post", "index.php?page_name=ajax", true);
   ajax.send(JSON.stringify(data));
 }
 
@@ -60,17 +60,17 @@ function handleResult(result) {
   // console.log(result);
   let obj = JSON.parse(result);
 
-  if (typeof obj != 'undefined') {
+  if (typeof obj != "undefined") {
     // get valid json
-    if (obj.dataType == 'search') {
+    if (obj.dataType == "search") {
       // empty the div
-      let myDiv = document.querySelector('.js-products');
-      myDiv.innerHTML = '';
+      let myDiv = document.querySelector(".js-products");
+      myDiv.innerHTML = "";
 
       PRODUCTS = [];
 
       // verify if data exist
-      if (obj.data != '') {
+      if (obj.data != "") {
         // update prods table
         PRODUCTS = obj.data;
 
@@ -117,8 +117,8 @@ function itemMarkup(data, index) {
 }
 
 function addItem(e) {
-  if (e.target.tagName == 'IMG') {
-    let index = e.target.getAttribute('index');
+  if (e.target.tagName == "IMG") {
+    let index = e.target.getAttribute("index");
 
     addItemFromIndex(index);
   }
@@ -143,11 +143,11 @@ function addItemFromIndex(index) {
 }
 
 function refreshItems() {
-  let itemCount = document.querySelector('.js-item-count');
+  let itemCount = document.querySelector(".js-item-count");
   itemCount.innerHTML = ITEMS.length;
 
-  let itemsDiv = document.querySelector('.js-items');
-  itemsDiv.innerHTML = '';
+  let itemsDiv = document.querySelector(".js-items");
+  itemsDiv.innerHTML = "";
 
   // get total
   let grand_total = 0;
@@ -158,12 +158,12 @@ function refreshItems() {
     GRAND_TOTAL = grand_total;
   }
 
-  let grandtotal_Div = document.querySelector('.js-total');
-  grandtotal_Div.innerHTML = 'Total: $' + grand_total;
+  let grandtotal_Div = document.querySelector(".js-total");
+  grandtotal_Div.innerHTML = "Total: $" + grand_total;
 }
 
 function clearCart() {
-  if (!confirm('Are you sure you want to clear cart items!')) {
+  if (!confirm("Are you sure you want to clear cart items!")) {
     return;
   } else {
     ITEMS = [];
@@ -188,11 +188,11 @@ function clearCartItem(index) {
 }
 
 function changeQty(direction, e) {
-  let index = e.currentTarget.getAttribute('index');
+  let index = e.currentTarget.getAttribute("index");
 
-  if (direction == 'increase') {
+  if (direction == "increase") {
     ITEMS[index].qty += 1;
-  } else if (direction == 'decrease') {
+  } else if (direction == "decrease") {
     ITEMS[index].qty -= 1;
   } else {
     // use parseInt to prevent decimals
@@ -215,33 +215,33 @@ function checkForEnterKey(e) {
 }
 
 function showModal(modal) {
-  if (modal == 'amount_paid') {
+  if (modal == "amount_paid") {
     if (ITEMS.length == 0) {
-      alert('Cart is empty. Please add at least 1 item!');
+      alert("Cart is empty. Please add at least 1 item!");
       return;
     }
-    let modal_div = document.querySelector('.js-paid-amt');
-    modal_div.classList.remove('hide');
+    let modal_div = document.querySelector(".js-paid-amt");
+    modal_div.classList.remove("hide");
 
-    modal_div.querySelector('.js-cash-input').value = '';
-    modal_div.querySelector('.js-cash-input').focus();
-  } else if (modal == 'change') {
-    let modal_div = document.querySelector('.js-change');
-    modal_div.classList.remove('hide');
+    modal_div.querySelector(".js-cash-input").value = "";
+    modal_div.querySelector(".js-cash-input").focus();
+  } else if (modal == "change") {
+    let modal_div = document.querySelector(".js-change");
+    modal_div.classList.remove("hide");
 
-    modal_div.querySelector('.js-change-input').innerHTML = CHANGE;
-    modal_div.querySelector('.js-close-btn').focus;
+    modal_div.querySelector(".js-change-input").innerHTML = CHANGE;
+    modal_div.querySelector(".js-close-btn").focus;
   }
 }
 
 function hideModal(e, modal) {
-  if (e == true || e.target.getAttribute('role') == 'close-button') {
-    if (modal == 'amount_paid') {
-      let modal_div = document.querySelector('.js-paid-amt');
-      modal_div.classList.add('hide');
-    } else if (modal == 'change') {
-      let modal_div = document.querySelector('.js-change');
-      modal_div.classList.add('hide');
+  if (e == true || e.target.getAttribute("role") == "close-button") {
+    if (modal == "amount_paid") {
+      let modal_div = document.querySelector(".js-paid-amt");
+      modal_div.classList.add("hide");
+    } else if (modal == "change") {
+      let modal_div = document.querySelector(".js-change");
+      modal_div.classList.add("hide");
     }
   }
 }
@@ -249,25 +249,25 @@ function hideModal(e, modal) {
 function validateAmountPaid(e) {
   // check for change
   let amount = e.currentTarget.parentNode
-    .querySelector('#js_change')
+    .querySelector("#js_change")
     .value.trim();
 
-  if (amount == '') {
-    alert('Please enter a valid amount!');
-    document.querySelector('.js-cash-input').focus();
+  if (amount == "") {
+    alert("Please enter a valid amount!");
+    document.querySelector(".js-cash-input").focus();
     return;
   }
   amount = parseFloat(amount);
 
   if (amount < GRAND_TOTAL) {
-    alert('Amount must be higher or equal to the total!');
+    alert("Amount must be higher or equal to the total!");
     return;
   }
 
   CHANGE = (amount - GRAND_TOTAL).toFixed(2);
 
-  hideModal(true, 'amount_paid');
-  showModal('change');
+  hideModal(true, "amount_paid");
+  showModal("change");
 
   // remove unused data
   let NEW_ITEMS = [];
@@ -275,21 +275,21 @@ function validateAmountPaid(e) {
   for (let i = 0; i < ITEMS.length; i++) {
     let tmp = {};
 
-    tmp.id = ITEMS[i]['id'];
-    tmp.qty = ITEMS[i]['qty'];
+    tmp.id = ITEMS[i]["id"];
+    tmp.qty = ITEMS[i]["qty"];
 
     NEW_ITEMS.push(tmp);
   }
 
   // send cart data through ajax
   sendData({
-    dataType: 'checkout',
+    dataType: "checkout",
     text: NEW_ITEMS,
   });
 
   // open receipt page
   printReceipt({
-    company: 'myPOS',
+    company: "myPOS",
     amount: amount,
     change: CHANGE,
     grand_total: GRAND_TOTAL,
@@ -302,8 +302,8 @@ function validateAmountPaid(e) {
 
   // reload products
   sendData({
-    dataType: 'search',
-    text: '',
+    dataType: "search",
+    text: "",
   });
 }
 
@@ -311,13 +311,13 @@ function printReceipt(obj) {
   let vars = JSON.stringify(obj);
 
   window.open(
-    'index.php?page_name=print&vars=' + vars,
-    'printpage',
-    'width=500px;'
+    "index.php?page_name=print&vars=" + vars,
+    "printpage",
+    "width=500px;"
   );
 }
 
 sendData({
-  dataType: 'search',
-  text: '',
+  dataType: "search",
+  text: "",
 });

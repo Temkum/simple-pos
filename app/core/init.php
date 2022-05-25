@@ -13,6 +13,6 @@ function myModel($classname)
     $filename = '../app/models/' . ucfirst($classname) . ".php";
     // check if class exist
     if (file_exists($filename)) {
-         require $filename;
+        require $filename;
     }
 }

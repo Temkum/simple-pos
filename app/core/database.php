@@ -10,7 +10,7 @@ class Database
         $DB_HOST = 'localhost';
         $DB_NAME = 'pos_desktop';
         $DB_USER = 'root';
-        $DB_PWD= 'loveisall21';
+        $DB_PWD = '';
         $DB_DRIVER = 'mysql';
 
         try {
@@ -29,7 +29,7 @@ class Database
     {
         $conn = $this->connect();
 
-      // prepare a stmt
+        // prepare a stmt
         $stmt = $conn->prepare($query);
         $check = $stmt->execute($data);
 

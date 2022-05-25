@@ -53,7 +53,7 @@ class ProductModel extends Model
             } elseif (!($data['image']['type'] == 'image/jpeg' || $data['image']['type'] == 'image/jpg' || $data['image']['type'] == 'image/png')) {
                 $errors['image'] = 'Image must be a valid JPEG or PNG!';
             } elseif ($data['image']['error'] > 0) {
-                $errors['image'] = 'Image upload failed. Error -' .  $data['image']['error'];
+                $errors['image'] = 'Image upload failed. Error -' . $data['image']['error'];
             } elseif ($data['image']['size'] > $img_size) {
                 $errors['image'] = 'Image size must be lower than' . $max_size . 'MB';
             }

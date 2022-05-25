@@ -91,8 +91,8 @@ function cropImg($filename, $size = 400, $type = 'product')
     // assign 0 to const variables
     $dst_x = 0;
     $dst_y = 0;
-    $dst_width = (int)$size;
-    $dst_height = (int)$size;
+    $dst_width = (int) $size;
+    $dst_height = (int) $size;
 
     $original_width = imagesx($src_image);
     $original_height = imagesy($src_image);
@@ -110,7 +110,7 @@ function cropImg($filename, $size = 400, $type = 'product')
     }
 
     // set cropping params
-    $dst_image = imagecreatetruecolor((int)$size, (int)$size);
+    $dst_image = imagecreatetruecolor((int) $size, (int) $size);
 
     imagecopyresampled($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_width, $dst_height, $src_width, $src_height);
 
@@ -145,7 +145,7 @@ function getReceiptNum()
 
     if (is_array($rows)) {
         # code...
-        $num = (int)$rows[0]['receipt_num'] + 1;
+        $num = (int) $rows[0]['receipt_num'] + 1;
     }
 
     return $num;
@@ -180,7 +180,7 @@ function generateDailyData($records)
             }
         }
     }
-    return $arr;
+    return $arr ?? 'No sales today';
 }
 
 function generateMonthlyData($records)

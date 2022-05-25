@@ -14,7 +14,7 @@ class UserModel extends Model
         'password',
         'image',
         'date',
-        'gender'
+        'gender',
     ];
 
     public function validate($data, $id = null)

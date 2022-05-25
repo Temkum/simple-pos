@@ -1,3 +1,3 @@
 <?php
 
-    define('APP_NAME', 'POS DESKTOP');
+define('APP_NAME', 'POS DESKTOP');
