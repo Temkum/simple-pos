@@ -3,6 +3,7 @@ let ITEMS = [];
 let BARCODE = false;
 let GRAND_TOTAL = 0;
 let CHANGE = 0;
+let RECEIPT_WINDOW = null;
 
 let main_input = document.querySelector(".js-search");
 
@@ -310,11 +311,16 @@ function validateAmountPaid(e) {
 function printReceipt(obj) {
   let vars = JSON.stringify(obj);
 
-  window.open(
+  PRINT_WINDOW = window.open(
     "index.php?page_name=print&vars=" + vars,
     "printpage",
     "width=500px;"
   );
+
+  // close window after a few seconds
+  setTimeout(() => {
+    PRINT_WINDOW.close();
+  }, 2000);
 }
 
 sendData({

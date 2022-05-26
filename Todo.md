@@ -139,3 +139,4 @@ _Database tables_
 
 - dashboard view
 - print receipt
+- automatic receipt print after sale confirmation
